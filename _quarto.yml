@@ -1,0 +1,32 @@
+project:
+ type: website
+ resources:
+    - 2026-lhar.pdf
+    - E-Ring/sdefa.dark.png
+ output-dir: docs
+
+website:
+ title: "Let's Have A Relay"
+ description: "A conlang relay showcase"
+ site-url: https://keras-saryan.github.io/lets-have-a-relay/
+ favicon: assets/img/favicon.ico
+ navbar:
+  collapse-below: xl
+  pinned: false
+  logo: assets/img/logo.png
+  left:
+    - E-Ring/index.qmd
+    - I-Ring/index.qmd
+
+format:
+ html:
+  page-layout: article
+  css: assets/custom.css
+  theme:
+   light: assets/light.scss
+   dark: assets/dark.scss
+  grid:
+   gutter-width: 0rem
+  toc: true
+
+editor: source

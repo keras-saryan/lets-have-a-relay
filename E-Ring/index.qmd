@@ -1,0 +1,746 @@
+---
+title: "🌵 E Ring"
+format: html
+knitr:
+  opts_chunk: 
+    echo: false
+    message: false
+    warning: false
+    dev: [lightsvgdev, darksvgdev]
+    fig.ext: [light.svg, dark.svg]
+    fig-align: center
+    fig-width: 7
+    fig-height: 4
+include-after-body:
+  text: |
+    <script type="application/javascript" src="../assets/light-dark.js"></script>
+---
+
+```{r setup}
+library("scales")
+library("tidyverse")
+library("extrafont")
+library("ggdark")
+library("ggplot2")
+
+lhar <- read.csv("../2026-lhar.csv", header = TRUE, sep = "\t", stringsAsFactors = FALSE, encoding = "UTF-8") %>%
+    filter(ring == "E")
+
+fontCustom <- "Fira Sans"
+
+theme_light <- function() {
+  theme_bw(base_family = fontCustom) +
+    theme(
+      plot.background = element_rect(fill = "white", colour = NA),
+      panel.background = element_rect(fill = "white", colour = NA),
+      text = element_text(colour = "black"),
+      axis.text = element_text(colour = "black"),
+      axis.title = element_text(colour = "black"),
+      plot.title = element_text(colour = "black"),
+      legend.background = element_rect(fill = "white"),
+      legend.key = element_rect(fill = "white")
+    )
+}
+
+theme_dark <- function() {
+  theme_bw(base_family = fontCustom) +
+    theme(
+      plot.background = element_rect(fill = "black", colour = NA),
+      panel.background = element_rect(fill = "black", colour = NA),
+      panel.grid.major = element_line(colour = "#555555"),
+      panel.grid.minor = element_line(colour = "#333333"),
+      text = element_text(colour = "white"),
+      axis.text = element_text(colour = "white"),
+      axis.title = element_text(colour = "white"),
+      plot.title = element_text(colour = "white"),
+      legend.background = element_rect(fill = "black"),
+      legend.key = element_rect(fill = "black"),
+      legend.text = element_text(colour = "white"),
+      legend.title = element_text(colour = "white")
+    )
+}
+
+lightsvgdev <- function(file, width, height) {
+  on.exit(reset_theme_settings())
+  theme_set(theme_light())
+  ggsave(
+    filename = file,
+    width = width,
+    height = height,
+    dev = "svg",
+    bg = "transparent"
+  )
+}
+
+darksvgdev <- function(file, width, height) {
+  on.exit(reset_theme_settings())
+  theme_set(theme_dark())
+  ggsave(
+    filename = file,
+    width = width,
+    height = height,
+    dev = "svg",
+    bg = "transparent"
+  )
+}
+
+theme_set(theme_light())
+```
+
+## 🏃 Participants
+
+The table below shows the ten participants that took part in this ring, the languages used as well as the dates at which the torch was completed/handed over alongside links to PDFs of the torches---which can also be viewed [below](#the-torches)---and other documents. Participants were (initially) given a (very flexible) five days to complete the tasks of deciphering the text they received, translating it into their language and composing their own torch document to pass on to the next participant.
+
+| Stage | Participant      | Language[^2]  | Torch completion date | Torch etc. |
+|-------|------------------|---------------|----------------------:|:-----:|
+| 1     | Miles Wronkovich | Chielúú       |  1 Jan. 2026          | [{{< fa file-pdf >}}](chielúú-torch.pdf){target="_blank" title="Download torch (without English translation)"} |
+| 2     | Eiran o Ddwywent | Bädoudilätous | 11 Jan. 2026          | [{{< fa file-pdf >}}](bädoudilätous-torch.pdf){target="_blank" title="Download torch (without English translation)"} |
+| 3     | Solar            | Dauλi         | 16 Jan. 2026          | [{{< fa file-pdf >}}](dauλi-torch.pdf){target="_blank" title="Download torch (without English translation)"} |
+| 4     | Tincture         | Múnise        | 22 Jan. 2026          | [{{< fa file-pdf >}}](múnise-torch.pdf){target="_blank" title="Download torch (without English translation)"} [{{< fa file-pdf >}}](múnise-translations.pdf){target="_blank" title="Download English translations"} |
+| 5     | Carl Avlund      | Upan Sakkaa   |  1 Feb. 2026          | [{{< fa file-pdf >}}](upan-sakkaa-translations.pdf){target="_blank" title="Download English translations"} |
+| 6     | Biblaridion      | Taqva-miir    |  7 Feb. 2026          | [{{< fa file-pdf >}}](taqva-miir-torch.pdf){target="_blank" title="Download torch (without English translation)"} [{{< fa file-pdf >}}](taqva-miir-translation.pdf){target="_blank" title="Download English translation"} |
+| 7     | Magpie           | Mekundo       | 10 Feb. 2026          | [{{< fa file-pdf >}}](mekundo-torch.pdf){target="_blank" title="Download torch (without English translation)"} [{{< fa file-pdf >}}](mekundo-translations.pdf){target="_blank" title="Download English translations"} |
+| 8     | Jonathan Kane    | Sdefa         | 18 Feb. 2026          | [{{< fa file-pdf >}}](sdefa-torch.pdf){target="_blank" title="Download torch (without English translation)"} [{{< fa file-pdf >}}](sdefa-translations.pdf){target="_blank" title="Download English translations"} |
+| 9     | Tethys           | Kam Pirngu    | 28 Feb. 2026          | [{{< fa file-pdf >}}](kam-pirngu-torch.pdf){target="_blank" title="Download torch (with English translation)"} |
+| 10    | Jason Lynn       | Shikaiwa      |  7 Mar. 2026          | [{{< fa file-pdf >}}](shikaiwa-text.pdf){target="_blank" title="Download text (without English translation)"} [{{< fa file-pdf >}}](shikaiwa-translations.pdf){target="_blank" title="Download English translations"} |
+
+: {tbl-colwidths="[1,1]" .striped}
+
+[^2]: That is, the language translated *into* not *out of*.
+
+The timeline below further illustrates the amount of time taken to pass the torch by each participant except the relay master, Miles.
+
+
+```{r timeline}
+#| fig-width: 7
+#| fig-height: 2
+
+lhar <- lhar %>%
+  mutate(
+    time_spent = difftime(completion_date, lag(completion_date)),
+    time_spent = as.difftime(round(as.numeric(time_spent)), units = "days"),
+    time_spent = coalesce(time_spent, as.difftime(0, units = "days")),
+    days_elapsed = cumsum(as.numeric(time_spent)) %>% 
+      as.difftime(units = "days")
+  )
+
+lhar %>%
+    slice(-1) %>%
+    mutate(x = "x") %>%
+    mutate(lab_adjust = days_elapsed - (time_spent / 2)) %>%
+    ggplot(aes(fill = reorder(participant, -stage))) + 
+    geom_bar(aes(x = x, y = time_spent), stat = "identity") +
+    geom_label(aes(x, y = lab_adjust, label = participant), colour = "white", family = fontCustom, vjust = -0.75) +
+    geom_label(aes(x, y = lab_adjust, label = paste(time_spent, "days")), colour = "white", family = fontCustom, vjust = 0.75) +
+    coord_flip() +
+    theme(legend.position = "none") +
+    labs(x = element_blank(), y = "Days elapsed since receipt of the first torch") +
+    theme(axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+
+# 🔥 The torches
+
+As well as being available for download [above](#participants-and-schedule), each torch (or best equivalent) can be viewed in the tabs below. Some include an English translation, others not, but this can be seen for all languages in the video and slides [above](#the-unveiling) as well as on this page [below](#the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos).
+
+::: {.panel-tabset}
+## Miles -- Chielúú
+{{< pdf chielúú-torch.pdf width=100% height=500 >}}
+
+## Eiran -- Bädoudilätous
+{{< pdf bädoudilätous-torch.pdf width=100% height=500 >}}
+
+## Solar -- Dauλi
+{{< pdf dauλi-torch.pdf width=100% height=500 >}}
+
+## Tincture -- Múnise
+{{< pdf múnise-torch.pdf width=100% height=500 >}}
+
+## Carl -- Upan Sakkaa
+{{< pdf upan-sakka-torch.pdf width=100% height=500 >}}
+
+## Biblaridion -- Taqva-miir
+{{< pdf taqva-miir-torch.pdf width=100% height=500 >}}
+
+## Magpie -- Mekundo
+{{< pdf mekundo-torch.pdf width=100% height=500 >}}
+
+## Jonathan -- Sdefa
+{{< pdf sdefa-torch.pdf width=100% height=500 >}}
+
+## Tethys -- Kam Pirngu
+{{< pdf kam-pirngu-torch.pdf width=100% height=500 >}}
+
+## Jason -- Shikaiwa
+{{< pdf shikaiwa-text.pdf width=100% height=500 >}}
+:::
+
+# 🌈 The arc of the conlang relay is long and it bends towards chaos
+
+This is the bit you're probably after: the text and its English translation at each stage of the relay.
+
+## 🥰 Miles -- Chielúú
+
+::: columns
+::: {.column width="48%"}
+Shupúú chʼúúhu ketíí pííne Xipʼuupát pʼunáá Sichúú yeng xoanchimáát áánu pʼámáát ráákíésu mééhi. Ráákíésu kim mát pʼunáá Méhuníí xaa Súósichí, sichí háyu ráákíésu.
+
+Shupúú kúút ketíí úúpí chʼúúhu hóóxa chʼuomáát ietlóó saa Súósichí pʼunáá óángáá yeng sichí ííha shishu kúút ííchú sichí háyu pʼieshímu. Máácha xúóshí kúút xáá nípú ííchú xúófó chʼoachúúm nii áánu cháyu siefaamáát.
+
+Súútu Shupúú saang ííchú ínsha moaxúú shiim xaa háyu shichʼá. Cháyu kiyaa micháá moaxúú sáápú úúpí kiilú saang ííchú Shupúú kʼixáá áánu sáá chá pʼunáá uoʼoláá.
+
+Kú sáá yeng kiyaa su Shupúú ketíí chʼáhí ííchú laashí. Chá micháá nitʼa yeng kiyaa úúpí sháchí Shupúú háyu sipʼi. Xiechʼietʼee kʼaang siim róó ííchú laashí.
+
+Kiyaa xáá xáá sháchí pʼunáá Shupúú háyu sipʼi yeng ínsha pʼunáá kú moaxúú la háyu lúóxáá kúút. Kʼoataa Shupúú háyu sipʼi úúpí ketíí ixuu shikíí chʼáhí úúpí nitʼa yeng hutʼíémáát úúpí fi ííchú ínsha.
+
+Máácha xúóshí háyu síéyáá mééhi micháá ííha leawúú nitʼamáát úúpí pííne yúúmfe kúmimáát ítlu kúsa yáli ítlu kúút. Hutʼíí kú áánu sichí wikáá úúpi xaatoo fít. Kʼoataa kú chʼáhí yaa ííchu laashí shikíí úúpí pííne kúmimáát kúsa yáli kúút háyu cha pʼunáá xoanchimáát xiechʼíí kúsa fu sayú kʼu kúút tʼáát xóónchi.
+
+Hutʼíí níchʼiifo mát wikáá xoanchimáát mát ketíí shelá ííha hóóxa shupúú chʼúúhu. Máácha xúóshí háyu síéyáá kúút chʼuu ietlóó xoanchimáát mát ixuu kú shii shupúú kúút, háyu pʼoo chátʼee iráát ketíí chʼuu ietlóó saa Súósichí.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+The drowned dove flower is native to Xipʼuupát and used to honor some deities, especially Súósichí, the freshwater deity.
+
+At freshwater temples, doves were drowned into a basin of freshwater from the rivers as a sacrifice to Súósichí. On large holidays, villages celebrate around the fire pit and socialize.
+
+One member, Shupúú, sat close to the fire to stay warm and kept to themself. Another member decided to sit next to Shupúú and invited them into the woods to wander.
+
+As they were walking, Shupúú was shoved into a large tree. They shouted as someone bit at their neck. A flash of light appeared, casting a shadow onto the tree.
+
+They continued to gnaw into Shupúúʼs neck, while the fire behind them grew more violent. Once their neck was split, Shupúú screamed one last time and rain fell from the sky.
+
+Some villagers went to inspect the scream and found a pile of wet ashes and bones. They were drunk so they ignored it. Once they returned, they found the ashes and bones gone but instead found white flowers bloomed with a dark center. 
+
+These flowers became known as drowned dove flowers because of this. When an offering needs made to the freshwater deity, villagers use these flowers instead of doves.
+:::
+:::
+
+## 🐉 Eiran -- Bädoudilätous
+
+::: columns
+::: {.column width="48%"}
+Arr wen diindinwadorr Rrüdwidoubü sobo Müilisïdorr, oihpu bädoudalibisorr jänswinwa; ssärranrrobis Sudüinalü. Osa tan bädoudalibis met, san met Bädoudalibisorrtwe, Sinsorrnrrotis met bädoudalibis sinsorrn.
+
+Las Sinsorrnrrotis, met san senarrwe sinsorrn, arr risorr bïd müilistbonan met Sinsorrnrrotis; tuna sudüinalüdorr ou ssärranrrobis loun narrluu. Kuu ssiirarrtssäspanï dadüda tm bïd diindnarrluu-tisnd oihpu botbonan.
+
+Tuna ssïsü loun sin ahpin Sudüinalü, sounyau diindedalü to tanalü. Obrrwe ssïsürrurr sé loun isirr to sounyau sï soudrrb ebi tuna tm, soub rrwe Sudüinalü, met se rrwe, il ahpin rrwe met san sütaswe.
+
+Il rrurr ebi rrot ssïsü loun isirr Sudüinalü met tuna sütast. Rrau Sudüinalü h-üda h-ebi h-asirr ssïsü loun isirr ys met Sudüinalü. Bädoudüit düinalüduu to rrot rrwe san sütast rre.
+
+Asirr ssïsü loun isirr diind met ys met Sudüinalü ob ebi soundyau rrurr keedalü. Büitü rrwe h-ob, tuna ys met Sudüinalü sobo süs to kwodüit büitubuu rrwe, rrau Sudüinalü h-ebi arrs sorrant ou se diind.
+
+Obrrwe ssäspanïdisorr to h-ilädil rrurr rrauduudorr se tïrtwe sorranalü to büisorr sorranalü. Arrs sorrant oihpu sinsorrn, sütateet rrurr t-nwadbasis rrurr. Büisü rrwe, il rrurr bïd süs rre, wen kwodüit büitubuu, arr ou tout to büisorrrrwe, tanalü diindinwadorr düinalü ahpin sena tm süstorrnwadorr so; ou sütateet basis.
+
+Arrs sorrant, sütateet met kweduu diindinwadorr nwadbasis to h-arr loun sudüinalü ssärranrrobis. Narrl ssäspandisorr to las rrurr se rurr met kweduu met diindinwa las sudüinalüdorr ebi ssiditsis sé narrl basis to se Sinsorrnrroti las sé.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+_[N.B. This is a translation of the Chielúú rather than Bädoudilätous text.]_
+
+Dove was drowned to find Our Rock Under the Clouds’ flowers over some plant deities. This one deity in the Pantheon of Gods is Freshwater-Maker, the Freshwater Deity.
+
+Doves lie down to drown like death to give to Freshwater-Maker inside their freshwater cauldron to see streams at Freshwater-Maker’s Temple. Farmhouses (habitually eat) at the friend-pyre upon their holiday.
+
+A younger sibling (of Dove) sits with Dove, becoming hot and lonely. Their (Dove’s) older sibling wakes up and would become cold sitting there, they invite Dove over to walk with them in the forest.
+
+They (both) walk while the older sibling makes Dove lie down again by a large tree. They (Dove) begin to scream as the older sibling bites Dove’s neck. Something beneficial shines and is made in the shadow of the large tree.
+
+The older sibling continues to bite into Dove’s neck’s fire while they (both) become animalistic. (It is) Thundering, Dove’s neck lies down against (the tree) and lightning strikes it, (Dove) screams while raindrops (fall) towards the fire.
+
+Some farmers wake up and follow the screams through to a wet pile of ashes with wet bones. Raining over freshwater, they grow to forget them (animalistic). Thundering, they arrive at the large tree lightning struck to find the ashes and their bones, nothing but white flowers with a bowl of black roots that ceased to expand. 
+
+Raining, this poem grows flowers to know and to see like a dove to drown. Farmers die and send the flower poem between them to give doves when something has begged to die and be given to Freshwater-Maker.
+
+:::
+:::
+
+## 🌞 Solar -- Dauλi
+
+::: columns
+::: {.column width="48%"}
+saudude gςýýgte kkúíge ηςúmau ke luaíge rvúíde fuiha σéékte ggúsesgu σa σáíppo bíúσiaηosemγoko. σéékte — σa luaíha σauato σa σéékte bíúηγusagγu ςvúásegγu — suλato siσusamγoko ke augamasamγoko.
+
+dςu σáíppo mugaλaizamγuko, siσusamγuko suλato luaisu suaki fuiha gváúdema fuiha miatoodda. miatoodda-ruidisamigu ηςúúla fuηvúíresaηgu tumakausemigu luaíηe ηςáma ssisaηgu.
+
+maididau fubςaisammuko dγusamγuko ηγáúsemmuko ke luaíηe ssisammoko buiηe ηkáízammoko ruiddsemmoko.
+
+miσuaσo fuiηa bςáísammuko miσuaσo fuςvusammuko daiadasimmuko ke luaíηa ηγáúízammuko buiηe kiumuizammuko ruiddsemmoko, ςvúsammuko ddágosamγoko fuςvúáísamγoko dmúássemmoko luasu ηςúútλoka fuςvúáísasgu ςvúáísamγoko kiumusammuko ggusemγoko.
+
+luaíha daσuizamγoko daiaadsammoko ddágosamγoko mugeeλsemmoko kkúso ηςúútλoka. frúiηe σáíppo-daipíáúizammoko harudauλsemγoko! dγusemγuko ke busu ηςúútλoka fuςvúáísasgu rvúízammoko ruiddsemγoko.
+
+bumi σáíppo-daipíáúizammoko gςáηau fugςalookkaiza ruiddsemmoko! gγálookke harudauλsegςuumko, σúáηηe fuíha σáíppo kkúso ηςúútλoka mugaaλsegςuumko ke ruddágosagςuumko — gςi harudauλesagςuumko fsu σáíppo — siσusegςuumko ke ttiiλkesamγuko fuηviraizamγuko ke sugaudema dbíílsegςuumko.
+
+ηςííkte fuςvúáísammuko ludaidasemmuko, σárodauλe ληútosimmuko ke suadadui ke dváítaiku fugvaugaudeemsasmuko ggusemmuko. luaisu gváúgaudema-ggusammuko ke luaisu σárodauλe-ksasasmuko gváúgaudeemsasmoko lgusgesmoko lua σsismuko! ηςálookkesagςuumko luaisu srútukoλa daσusegςuumko. gváúgaudeemsasmoko suudude fsu σáíppo ke suaki luaisu srútukoλa bγusasmuko ggusesmuko ke σsissmuko.
+
+gváúgaudema fudbilesassine σádauλe fuσaizamγoko fuiha saudude ggusessine, ddagosamγuko luσiaηosemγuko lgusesmuko ke ggusesmuko. ηςííkte fuςvúáísammuko ttiiλkesemmuko ke saudude tumakausemmuko σáíha σadauλe fuíha ςvúsammuko — su dςúso tumakousasgu saudude daipiausamγuko dςu ggusesmuko su bu bsu ttiiλkesasmuko dikatosesmuko
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+The flowers see the moon under the cloud, and over their gods; those stars that were drowned. There is one god in the pantheon that made the skies and is the god of the skies.
+
+The sky-maker sent, in their container, the sky and looked for streams around their holy meeting place, and laid down stars that had drowned. Those in the homeland offer burnt sacrifices on that day.
+
+The younger sibling sat with the doves and became hot where he was alone. His sibling woke the older sibling and became cold when they sat, she welcomed the stars into the forest, and they came to her and met her there.
+
+When they arrived the older sibling made them lay down under the trees and they began to scream as the older sibling bit the necks of the stars. They shone and made the canopies great!
+
+The older sibling is biting the fire of the stars’ necks and becomes animalistic! She is thundering and lays the stars’ necks under the canopies, and makes lightning —the screaming of the stars— while those stars fall as raindrops and fire!
+
+Farmers woke up and followed the screams to a pile of wet bone and wet ashes. Looking for raindrops in the skies, the bones and ashes grew and did not know it. She thundered and arrived around the grand tree. The plants desired her thunder. The ashes and bones saw the stars’ flowers with the vessel on the dark tree’s limbs, and they grew!
+
+The raindrops saw the story of the flowers grow, they knew and saw the brightness drown. The farmers died and sent them to her story that is the flower showed the stars how to beg that something would die and be sent to the World maker.
+:::
+:::
+
+## 🎨 Tincture -- Múnise
+
+::: columns
+::: {.column width="48%"}
+Sikeetse kútuna nevepú ves túsrënseva vaava uket aantu kutur.
+
+Miheké ílepsam vata neksam sulúsursë véruksa eukeu úékkuhuksa. Neksam sulúsurmeke léthuksa, vaku ekúrmesam sauk melu véruksa. Ekúérmesam neveputa vaava úketes náúltetesam pírrëmuk neukeu lusmuk.
+
+Pírrëmise lussa eet ulmeme kilmúútnasam aepas.
+
+Ulmés atta themas eukeu ulmé melu sámaksa eukeu aepas pírrëmiseru rúkkaksa. Súúttavu kupripéth súúravva laraunsa seukeu kutus pétheuta enrës.
+
+Pétheruvu suura uváár súúttamasmë suura ves luursa seuksa el áttapsa. Suuth péthensë serháépnaksa eukeu athmúniteva péthensë uvmúnuksa. Petta euk súúravvath méhensa eukeu muutsa eukeu veskë uváás.
+
+Luu serháépnese suutta évrëmahnas eslúlukuksa! Sata athmunit súúthava munus eukeu ses suhís suura ves luurmus euppu athmuutna sulúsursë úmmuvath athmúnitevath verus pétheuta lussa éúkeru ísemes eukeu met theus.
+
+Miheké vata ummu athmunit munsa eukeu themas eukeu métansam etru emal kutus. Metta étheksa eukkel kútuksa eukeu métansë itse athmunit étheksa euksa lúluksa!
+
+Suutta évrëmahnavath athura uváás. Lusurmúútnasam sutúsrënse sikeetse liis athura melu sauk seuk kutus seukeu lúluksa. Théúnata sikeetses lúlukmise munit kutus eukeu túsrënse muutna étheksa eukeu se kutus. Miheké vata áttapsa eukeu sikeetse tássuva áthava múniteva mus. Sikéétseta serháépneseva muk seukeu ákise seva kútumus. Ákisevath sikeetse ísemeh.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+Flowers watch an eye under a cow and over a harvest of drowned barley.
+
+The plentiful barley in the field was created and ruled over by the stars in the sky. For as the stars in the sky were laid down, so was the barley created beside a lake in the homeland. In the homeland, on one day of the barley harvest, a cow must be offered for sacrifice and immolated.
+
+As the sacrifice burned, a young boy worked in the firelight. His brother woke up, sat beside him and worked until the sacrifice cooled. Then the brothers welcomed spark-bugs to the trees and watched as the bugs came.
+
+When the insects arrived, the siblings lay down under the trees but did not sleep. The insects attacked the siblings by biting and said great words to them. The insects fed themselves on the trees and glowed and grew large.
+
+The two siblings, attacked by biting, grew wings. The wind said great words to them and laid their heads down under the trees and, with powerful great words of the stars, created a great light, and the insects were immolated until they died and fell in the water.
+
+The plentiful barley heard the powerful great words and awoke, and saw bones and ashes in the water. The water knew that it was being looked at, and knew the powerful great words of the water, but it grew!
+
+The siblings arrived by wing at a great tree. In the starlight they saw the drowned flowers and the lake next to the dark great tree. The rain saw the flowers’ growing words and knew and saw the drowned light. The plentiful barley slept, and offered flowers to the elder brother’s words. The flowers needed to be given to one attacked by biting, and made him see a method. By this method the flowers wished to die.
+:::
+:::
+
+## 🦁 Carl -- Upan Sakkaa
+
+::: columns
+::: {.column width="48%"}
+mintea boku kosposunniatu maatuena eldiena dumbudoevapoutun
+
+ambeni tittimeena via kaankeva yuboana dumbuena bestithenni vi segenunni
+
+weiki tittimeena ambenithemba men tovaniitovammea naau eppea bundu dumbuenanau bestithenni
+
+tovaniitovammea naau dumbudoeva miam mintea eikounni vi urenni
+
+urenniatua eikountumba run ukkina eikoa vesumun
+
+ukkina oadenia yoron vi ukkina bundui kono vi urenniatua keishukeiva iin is leunnas
+
+yan yukaasuma iin oadendi tippashiena situun vi wannapou vi tippashiena irrinas
+
+tippashiena yukaasumanastumba run vesumena boku oadendi kono vi lokuasabua
+
+tippashiena viai oadendi ovinni vi wanna irri ulomeenaguu
+
+tippashiena irri vesum kekisun vi irri avaaikei vi ameskei
+
+ovinniatu oadendi badini
+
+weshu oadendi ulomeenaguu vi inaniri vesumena bokuthen
+
+yan eeppa ulomeena ratu osa ames tittimeava bestithen vi osa aspaniaiva iin tippashiena avaainas vi yan wanna pova nuakunas
+
+kaankeva dumbuena eeppa ulomeenaguu vi yoron vi eppea nuaku timmuena thoogamue
+
+povapouninin vuuru vi osa itaava ulomeatun vuuru vi ankebua
+
+badiiena ratu oadendi vesummenastimi
+
+tittimeava boku kosposunniatu maatuena irripou vi eppea bundu dangan vesummeanaupou vi anke
+
+shovo maatuena ankevapou vi ava vuuru vi osapou
+
+kaankeva dumbuena lokua vi oademmea uloiena maatuenasun
+
+maatuena ovinniatuasunni vi oona isa nasiissun
+
+en maatu lokkonannieatu menki
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+the eyes flowers that are drowned beneath a beast are watching bulrushes being picked
+
+the bulrushes in the plentiful field were created and ruled by the stars of the sky
+
+indeed, like the stars were put onto the sky, the bulrushes, too, were created next to the lake in the homeland
+
+in the homeland, on the day of picking the bulrushes, a beast was roasted and sacrificed
+
+while roasting the sacrificed one, a young one stoked the fire
+
+the young one's brother stood up, sat down next to the young one, and kept working until the sacrificed one had cooled down
+
+then the two brothers welcomed some fireflies to the forest and saw them, and the fireflies came to them
+
+while the fireflies were coming to the forest, the two brothers laid themselves down under the trees, but they did not sleep
+
+the two brothers were bitten by the fireflies, and they spoke great words to the two of them
+
+the fireflies fed them wood, and the two of them began to glow and they became large
+
+the two bitten brothers got wings
+
+the wind spoke great words to the two brothers, and it laid their heads under the trees
+
+then, with great, powerful words, it created the great starlights, and until it quieted down, the fireflies kept glowing, and then they went into the water
+
+the plentiful bulrushes spoke great, powerful words and arose, and they looked like the bones in the lake
+
+the water knew that it had been seen, and it knew the great word of desire, and it grew
+
+using their wings, the two brothers arrived at a great tree
+
+under the starlights, the drowned flowers saw them, and they saw also saw the great, dark tree next to the lake, and they grew
+
+the rain saw the flowers' growth, and it knew the light, and it saw it
+
+the plentiful bulrushes slept, and gave older brother's great words to the flowers
+
+the flowers were given to the bitten one, and they gave him the path
+
+that's the way in which flowers must die
+:::
+:::
+
+## 🦎 Biblaridion -- Taqva-miir
+
+::: columns
+::: {.column width="48%"}
+Sinahti sikti ir nëhkëllo amba rööynö-dhaw töhrö lëwarbissa-örrüühsü röhsü. Rööynöhi talma ir lëwarbissa imaak iskaarhis nimiraadhas matasqaas. Ihrid, lëwarbissa qorod ir yaalliihüüh sök nëhvihtaad vööt örmi miyan ohoros. Ködhün, lëwarbissa-örrüüh-yaalas tüün, nëhkëllo kürdivöösqööröhhin kövihyükkön, niilla vir sihvas yaarahvan. Niillas inwa vir tohsë miyan aarakahhin kürdivöösqöömö torvotonno ürnin diimün. Sükkin, inwanda horon ilnaan sühinöömistiis rühhin aaras tis’sëmaaywarahhin tassin’damrë. Sühinöömisti horon yaattan, inwanda aaras osto töhrö aarak, dërë yalhirat. Sühinöömisti taay tar’tirahhanahhin ayrimak-miirmiqas taraal’din. Araay sühinöömistüür ostoomiqos kahaykamrëhhin qaadhatanahhin noolkotonohhin siyüstüür komohoron. Yaltaamëndë inwanda araay ayrimak-miirmiqas dirahhin osto töhrö torrë kondoos ihqaan. Sükkin sühinöömisti taay baraadhis ayrimak sar iskaarhis rööynö-noolkos matasqaar aaylaahkënna noolkoton diimrëhhin sinrë yaattan. Iskaarhi lëwarbissa atqaarahhin baraadhis ayrimak-miirmiqas din, örmi vööt tihnü ir yërvëttin. Ya din sin ya körühhin ilrë, dërë iqva ayrimak-miirmiqas ilkëëh ir ohoron. Inwanda aaras aarman siyüsti sar qaadhas ostoos qööröt. Rööynö-noolko töhrö, sinahti sikti ya torrë lëh’örmis miyan qaadhas süürdüs ostoos röhsü. Darha ör noolkos lës’sikti ih ohoroohsë rühhin. Iskaarhi lëwarbissa alhitanahhin inwanda oorho ayrimak ya siktis matasqaas. Sikti ya nilküühyaqas hooqqon kahaytirahsë. Va ya miyaq sikti yaandë vöösqöön ayaar.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+Long ago, the aquatic flowers saw the harvesting of the bulrushes under the constellation of the sacred beast. The starry sky brought about abundant plains of bulrushes. Indeed, with nightfall, bulrushes also came to grow in the great homeland next to a lake. There, on the day of the bulrush harvest, while the sacred beast was sacrificed and cooked, a child added fuel to the fire. The child’s sibling sat down next to them and kept working until the sacrifice started getting cold. Then, when the two siblings saw some fireflies near the forest, they greeted them and ran toward them. As the fireflies went into the forest, the two siblings sat down under the trees but didn’t fall asleep. The fireflies bit them and said magic words to them. As they were fed wood by the fireflies, they became larger, began to glow, and grew wings. Now flying, the siblings said magic words and then put their heads under the trees. Then, using powerful magic, the fireflies kept lighting up to create starlight until it became quiet, and then they went into the water. As the plentiful bulrushes stood up and said powerful magic words, the bones inside the lake were turned to ashes. They knew that the water was seen, but their desire to have a magic word grew. Using their wings, the two siblings arrived at a big tree. Under the starlight, the aquatic flowers saw the siblings and the big black tree next to the lake. The rain saw the light and the flowers growing. The plentiful bulrushes went to sleep as the siblings’ magic brought about flowers. The flowers were made to be bitten, creating a path. This is how flowers should be killed.
+:::
+:::
+
+## 🐦‍⬛ Magpie -- Mekundo
+
+::: columns
+::: {.column width="48%"}
+Ge baagha-báághata zengè, súlosèt fina dèlèngómoti maazemang ranáářèfrum khogum ěkeze dehedzighus. Idzuk řodum hídzita dèlèngířideti tsa'úsudzèt ge maazemang.
+
+Hundrut, ha maraa dèlèngúnggiti, maazemang dèlèndzá'usrum ge 'udz èřung maazè dèghogum. Ge ambè'údz, ge maazemang ranáářèfrum dèzengè, ěkeze dèradzetak an dzinè fèngadè retsino dèngadè dèreretsínindi. Fútuuti, fèsasè fègérezeti ěřumfè, mi dèmús dèngadè dèreretsínimak.
+
+Ge suludz, sásota alomok súúhiri alomi'i alumekúndimakènè. Ge alobúnduti súúhiri dèzuudaa, sásota alogérezak khogum sembina, an alèhungge alèmúhumus meno. Súúhiri dèghisè dèsèkénimako èřung élo'o maklè. Súúhiri dèdzéénimak dzíneta alobundu alo'óklirum ka'a, an alotsa'us alohindim alořohak meese. Sásota nébiřum alugèrenzim alósrobèt khogum suu alomíkutak élo'o maklè. Lana, mi dzaatum hidze, súúhiri dèdzáá tu'uz dèhíndindi, an dèhékíkènè buru suludz.
+
+Ha alomíkutak rondzè élo'o maklè, mi tava maazemang dèdzaatum hundrut an gáraba dèrítsirum buru maazè. Finata dèsèkèk suu dómorunè, an dèveliik tsá'usrum nim élo'o maklè. Nim alomeese, sásota alomi'i alobúnduk ondaz legre ka'a èřung maazè. Khogum hidze dèhiri, sulos fina domok u'n ka'a. Ándara dómok hiri'n fina tsá'usrum. Maazemang dèhungge dèmuhun sásota alélo'o dířitak túkutèt.
+
+Nim nanotuno, tukut dèdzaati bundo ríndrakhrum. Ambè dèlěndro otuno tukut dèlamuu dèradzéřum.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+In the ancient days, the water plants watched the horsetail harvest under the star-sign of the aetosauroid. The starry sky brought about fields of horsetails. Indeed, when night fell, horsetails grew in the land by the river's end.
+
+There, on the day of the horsetail harvest, an aetosauroid was sacrificed and a child kept the fire while it cooked. As she worked, the child's sibling sat next to her, until the sacrifice finished cooking.
+
+In the sea, the siblings saw sea-lights, and went and spoke to them. When they entered the sea-lights' shallows, the siblings sat under a sembina-tree, but did not fall asleep. The sea-lights bit them and taught magic words to them. The sea-lights made the children able to eat wood, and they got bigger, glowed, and grew wings. The flying siblings put their heads under the water and spoke the magic words. Then, in order to become stars, the sea-lights went silent and glowed as they went out to sea.
+
+When they said the powerful magic words, many horsetails stood upright, while bones burned in the river. The plants knew that they were being watched by the water, but they wanted to grow with the magic words. The siblings used their wings to reach a large black tree by the river. Under the stars' light, the water-plants watched them and the tree. The rain watched the lights and the growing plants. The horsetails fell asleep and the siblings' magic made strobili.
+
+In this way, the strobili became able to be cut. That is the manner in which the strobili
+should be killed.
+:::
+:::
+
+## 🎻 Jonathan -- Sdefa
+
+::: columns
+::: {.column width="48%"}
+<span title="Jonathan's translation into Sdefa of Magpie's Mekundo text.">
+![](sdefa.light.png)
+</span>
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+Long, long ago, some bushes grew by the mouth of a river. The starry sky made the bushes grow, and the seaweed saw the bushes being harvested.
+
+One day, two children slaughtered a cow nearby, then tended a fire and cooked it. The children saw a light in the ocean, so they walked over to it to speak to it. They arrived at the light, and then they sat below a tree. The light spoke to them, and taught them a magic word. The light changed them, making them glow, get larger, and grow wings.
+
+The siblings put their heads into the water, and said the magic word. Then the light became silent and flew away over the ocean, and became a star.
+
+Because of the magic word, the bushes grew. The seaweed saw this, and it wanted to grow, so the children flew away and arrived at a big black tree next to the river. By the starlight, the seaweed watched the children and the tree.
+
+Then the children used their magic to make the bushes fall asleep and grow many berries. That is why bushes now grow edible berries.
+:::
+:::
+
+## 📯 Tethys -- Kam Pirngu
+
+::: columns
+::: {.column width="48%"}
+Tarawa mut tinik ta, makka ti-wirum ka ti-riuni, tak tum ndauni-mang. Pambam mut tum ti-waak tammak tikki ti-mut tinik ta.
+
+Ngam pikkar-mang, pirrak na pawanga ngguwi-mang tak ti-rum ndauni, kukkuppi kir tak pinam-mang. Pambam ti-wir na kirumbau-manngak ngam ti-ngu, akkattu, turuwa kir. Kirraak mbamanga piu-mang, kirra kinggindang ngam ri kir. Ti-wa, ti-wirummak ngangaur ti-wir na kat rundi-mang. Ti-wirrak na ikkjuma tj-ambi-wirra ngam ti-ngu, kanngam ti-wat rundi. Ti-wirummak ngam ti-ngu kunggun kirum ti-wir na, kunggun tawa kirra kappun nua pak. Tarawa kiwup ti-wirum, kir pak ka ti-ngu ri ti-rannga, nua nggarwi
+tiuni-mang pinam.
+
+Ti-wattak rundi kunggun kiwup ti-mut tinik ta. Turungu ti-mut tum nua tawa ina tak ti-mut tinik. Ti-wir na pappak uppan ti-rannga, pambam pippau-manngak mbum tamut tak ti-rum ndauni. Nua ti-wirum ka ti-riuni, randamba ti-mut tum ti-wirrak na tak ti-wippak. Tuwa ti-wa, ti-wirrak na ndurnur ti-mut tinik, takkunggun tawa kirra rakki nua makka. Nua ti-wa, rakki mut tinik.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+Thorn bushes grew, eating the light of the stars, alongside a river. Water plants saw someone harvesting the thorn bushes.
+
+One day, two children killed a beast by the river, and cooked it with a fire. The children saw a light in the ocean, and went and followed it. They arrived at a tree, and sat under it. Here, the light taught the two children a magic spell. The children submerged their heads in the ocean and said the magic spell. The light made them glow, and made them grow wings for flying. Growing silent, it flew out of the ocean to the sky, to float as a burning star.
+
+The magic spell made the thorn bushes quiet. The water plants wanted to grow like the thorn bushes. The two children flew through the sky, and saw a big black tree. Because of the light from the stars, the water plants obeyed the two children and the tree. Then the children used the spell to make the briar bushes fall asleep and grow fruit to eat. This is why briar bushes grow fruit.
+:::
+:::
+
+
+## 🦔 Jason -- Shikaiwa
+
+::: columns
+::: {.column width="48%" .shikaiwa}
+<span title="Kai hakou cifik’uu p’auvai saikoko wiehaau fudha wucu. Kai uthi wau itk’icu kai hakou haau wahawazhu. Au thaulu p’auvai, zhatha yaulho cifik’uu p’au s’aufi suthuavai saufi kakushi p’au lhafauhopai. Udhauto p’au, wie cifeava p’au yaulho itk’ifai ptayuudho ik’oshu. Wie yaulho wiishet’au ptayazhu p’au yaulho wiishet’ie k’auvai. Taidu p’auvai wie kai yiihi sauwa yalhoshi ptethayawai yaulho auzho paavai. Yaulho zhasit’oko fuo cifet’ie t’aava zhkusizhu p’au s’auwa pteyadawai. Wie cifeko p’au yaulho pzhuuka yaulho husa yaulhoshi t’ipiodhau yaulho t’ipiot’au p’auvai pthukilo. Wie faisha cifeyuti uuzhivai k’aucushu aavaka shkusiwai saiko husa paulho. Shiihi sauwa kakou waciu kakou faishafai huthi wau kakousko vu k’icis’o.Yaulho aavaka p’auvai pthuki ik’oshu cifik’uu aka shiili wiishe p’au itk’ifai. Saikoko wie p’au wiishe p’auvai huthi wau yaulho palhuucu. Yaulho kakou waciu wacuuka kakou kawo wacuuka ciiya kakoushi vu haau si p’auvai. T’aata p’auvai k’akou ciiyaayalha">
+&lt;pl&gt; qq&gt; [plant] c f [water] k&gt; [loc] &lt;be&gt; &lt;stat&gt; sq [divine] k [loc] w [light] &lt;eat&gt; pt [live] f [grow] . &lt;pl&gt; xd [water] wʔ [plant] tq&gt; [sense] &lt;dur&gt; &lt;pl&gt; qq&gt; [plant] &lt;eat&gt; &lt;iii&gt; hw [harvest] &lt;dur&gt; . &lt;sg&gt; &lt;sun&gt; &lt;be&gt; &lt;stat&gt; &lt;pauc&gt; &lt;baby&gt; c f [water] k&gt; [loc] &lt;be&gt; &lt;tel&gt; sp [animal] &lt;ii&gt; t [die] &lt;stat&gt; sp [animal] k [asis] ɕ [loc] &lt;be&gt; &lt;ii&gt; fk [process] . tt&gt; [time] &lt;be&gt; w [light] cf gl [water] ʔ [loc] &lt;be&gt; &lt;baby&gt;  tq&gt; [sense] &lt;stat&gt; &lt;xv&gt; t [follow] k&gt; [walk] &lt;dur&gt; . w [light] &lt;baby&gt; wc [plant] t&gt; [loc] &lt;i&gt; t&gt;j [walk] &lt;be&gt; &lt;baby&gt; wc [plant] t&gt;d [loc] k&gt; [rest] &lt;stat&gt; . tl d [divine] &lt;be&gt; &lt;stat&gt; w [light] &lt;pl&gt; &lt;divine&gt; s gw [sound] &lt;baby&gt; ɕ [loc] &lt;xv&gt; t&gt;j [walk] &lt;stat&gt; &lt;baby&gt; ɕʔ [copy] p [know] &lt;stat&gt; . &lt;baby&gt; &lt;3pauc&gt; k [loc] f [head] cf gl [water] t&gt;d [loc] t&gt;f [walk] ɕ ks [walk] &lt;be&gt; &lt;tel&gt; s gw [sound] &lt;xv&gt; j dh [sound] . w [light] cf gl [water] k [loc] &lt;be&gt; &lt;baby&gt; &lt;i&gt; [make] &lt;baby&gt; hs [light] &lt;baby&gt; ɕ [loc] t&gt;p [wing] d [give] &lt;baby&gt; t&gt;p [wing] t&gt; [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] &lt;hab&gt; . w [light] fɕ [still] cf gl [water] jt [loc] hc [walk] &lt;stat&gt; q&gt;ʔ ch [walk] &lt;dur&gt; [sky] k [loc] ɕ ks [walk] &lt;stat&gt; sq [divine] hs [light] &lt;be&gt; &lt;hab&gt; . &lt;divine&gt; s gw [sound] qq&gt; [plant] &lt;iii&gt; iw [join] qq&gt; [plant] fɕ [still] &lt;stat&gt; xd [water] wʔ [plant] qq&gt; [plant] sk [loc] f [grow] k&gt; kʔ [want] &lt;dur&gt; . &lt;baby&gt; [sky] k [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] k&gt; [walk]  &lt;dur&gt; cf [water] k&gt; [loc] k&gt; [dark] is [big] wc [plant] &lt;be&gt; tq&gt; [sense] &lt;stat&gt; . sq [divine] k [loc] w [light] &lt;be&gt; wc [plant] &lt;be&gt; &lt;stat&gt; xd [water] wʔ [plant] &lt;baby&gt; &lt;i&gt; sd [know] &lt;dur&gt; . &lt;baby&gt; qq&gt; [plant] &lt;iii&gt; iw [join] &lt;iii&gt; [make] qq&gt; [plant] kw [rest] &lt;iii&gt; [make] [fruit] qq&gt; [plant] ɕ [loc] f [grow] &lt;eat&gt; &lt;for&gt; &lt;be&gt; &lt;stat&gt; t&gt;t&gt; [time] &lt;be&gt; &lt;stat&gt; &lt;coll&gt; qq&gt; [plant] [fruit] j [asis] &lt;hab&gt; .
+</span>
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+Cacti grew near a river, feeding on starlight. Water plants watched as the cacti were harvested.
+
+One day, some children killed an animal by the river and cooked it over a fire. Afterward they saw a light over the sea, and they went after it.
+
+It led them to a tree, and they sat beneath it. There, the light taught them a magic spell.
+
+The children dipped their heads beneath the sea and spoke the spell. The light in the sea made the children glow and gave them wings so they could fly. The light grew calm, then rose from the sea into the sky, to be burning stars.
+
+The spell soothed the cacti, but the water plants longed to grow like cacti. The children flew through the sky and saw a great dark tree beside the river. Because of the starlight, the water plants listened to the children there at the tree. Then the children put the cacti to sleep and made them grow fruit to be eaten.
+
+And ever since, cacti bear fruit.
+:::
+:::
+
+# 🫣 Then vs now
+
+Now, to give a clearer picture of how things ~~degraded~~ progressed from start to finish, below is a direct comparison of the starting (left) and final (right) texts in Chielúú/Shikaiwa and English.
+
+---
+
+::: columns
+::: {.column width="48%"}
+Shupúú chʼúúhu ketíí pííne Xipʼuupát pʼunáá Sichúú yeng xoanchimáát áánu pʼámáát ráákíésu mééhi. Ráákíésu kim mát pʼunáá Méhuníí xaa Súósichí, sichí háyu ráákíésu.
+
+Shupúú kúút ketíí úúpí chʼúúhu hóóxa chʼuomáát ietlóó saa Súósichí pʼunáá óángáá yeng sichí ííha shishu kúút ííchú sichí háyu pʼieshímu. Máácha xúóshí kúút xáá nípú ííchú xúófó chʼoachúúm nii áánu cháyu siefaamáát.
+
+Súútu Shupúú saang ííchú ínsha moaxúú shiim xaa háyu shichʼá. Cháyu kiyaa micháá moaxúú sáápú úúpí kiilú saang ííchú Shupúú kʼixáá áánu sáá chá pʼunáá uoʼoláá.
+
+Kú sáá yeng kiyaa su Shupúú ketíí chʼáhí ííchú laashí. Chá micháá nitʼa yeng kiyaa úúpí sháchí Shupúú háyu sipʼi. Xiechʼietʼee kʼaang siim róó ííchú laashí.
+
+Kiyaa xáá xáá sháchí pʼunáá Shupúú háyu sipʼi yeng ínsha pʼunáá kú moaxúú la háyu lúóxáá kúút. Kʼoataa Shupúú háyu sipʼi úúpí ketíí ixuu shikíí chʼáhí úúpí nitʼa yeng hutʼíémáát úúpí fi ííchú ínsha.
+
+Máácha xúóshí háyu síéyáá mééhi micháá ííha leawúú nitʼamáát úúpí pííne yúúmfe kúmimáát ítlu kúsa yáli ítlu kúút. Hutʼíí kú áánu sichí wikáá úúpi xaatoo fít. Kʼoataa kú chʼáhí yaa ííchu laashí shikíí úúpí pííne kúmimáát kúsa yáli kúút háyu cha pʼunáá xoanchimáát xiechʼíí kúsa fu sayú kʼu kúút tʼáát xóónchi.
+
+Hutʼíí níchʼiifo mát wikáá xoanchimáát mát ketíí shelá ííha hóóxa shupúú chʼúúhu. Máácha xúóshí háyu síéyáá kúút chʼuu ietlóó xoanchimáát mát ixuu kú shii shupúú kúút, háyu pʼoo chátʼee iráát ketíí chʼuu ietlóó saa Súósichí.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%" .shikaiwa}
+<span title="Kai hakou cifik’uu p’auvai saikoko wiehaau fudha wucu. Kai uthi wau itk’icu kai hakou haau wahawazhu. Au thaulu p’auvai, zhatha yaulho cifik’uu p’au s’aufi suthuavai saufi kakushi p’au lhafauhopai. Udhauto p’au, wie cifeava p’au yaulho itk’ifai ptayuudho ik’oshu. Wie yaulho wiishet’au ptayazhu p’au yaulho wiishet’ie k’auvai. Taidu p’auvai wie kai yiihi sauwa yalhoshi ptethayawai yaulho auzho paavai. Yaulho zhasit’oko fuo cifet’ie t’aava zhkusizhu p’au s’auwa pteyadawai. Wie cifeko p’au yaulho pzhuuka yaulho husa yaulhoshi t’ipiodhau yaulho t’ipiot’au p’auvai pthukilo. Wie faisha cifeyuti uuzhivai k’aucushu aavaka shkusiwai saiko husa paulho. Shiihi sauwa kakou waciu kakou faishafai huthi wau kakousko vu k’icis’o.Yaulho aavaka p’auvai pthuki ik’oshu cifik’uu aka shiili wiishe p’au itk’ifai. Saikoko wie p’au wiishe p’auvai huthi wau yaulho palhuucu. Yaulho kakou waciu wacuuka kakou kawo wacuuka ciiya kakoushi vu haau si p’auvai. T’aata p’auvai k’akou ciiyaayalha">
+&lt;pl&gt; qq&gt; [plant] c f [water] k&gt; [loc] &lt;be&gt; &lt;stat&gt; sq [divine] k [loc] w [light] &lt;eat&gt; pt [live] f [grow] . &lt;pl&gt; xd [water] wʔ [plant] tq&gt; [sense] &lt;dur&gt; &lt;pl&gt; qq&gt; [plant] &lt;eat&gt; &lt;iii&gt; hw [harvest] &lt;dur&gt; . &lt;sg&gt; &lt;sun&gt; &lt;be&gt; &lt;stat&gt; &lt;pauc&gt; &lt;baby&gt; c f [water] k&gt; [loc] &lt;be&gt; &lt;tel&gt; sp [animal] &lt;ii&gt; t [die] &lt;stat&gt; sp [animal] k [asis] ɕ [loc] &lt;be&gt; &lt;ii&gt; fk [process] . tt&gt; [time] &lt;be&gt; w [light] cf gl [water] ʔ [loc] &lt;be&gt; &lt;baby&gt;  tq&gt; [sense] &lt;stat&gt; &lt;xv&gt; t [follow] k&gt; [walk] &lt;dur&gt; . w [light] &lt;baby&gt; wc [plant] t&gt; [loc] &lt;i&gt; t&gt;j [walk] &lt;be&gt; &lt;baby&gt; wc [plant] t&gt;d [loc] k&gt; [rest] &lt;stat&gt; . tl d [divine] &lt;be&gt; &lt;stat&gt; w [light] &lt;pl&gt; &lt;divine&gt; s gw [sound] &lt;baby&gt; ɕ [loc] &lt;xv&gt; t&gt;j [walk] &lt;stat&gt; &lt;baby&gt; ɕʔ [copy] p [know] &lt;stat&gt; . &lt;baby&gt; &lt;3pauc&gt; k [loc] f [head] cf gl [water] t&gt;d [loc] t&gt;f [walk] ɕ ks [walk] &lt;be&gt; &lt;tel&gt; s gw [sound] &lt;xv&gt; j dh [sound] . w [light] cf gl [water] k [loc] &lt;be&gt; &lt;baby&gt; &lt;i&gt; [make] &lt;baby&gt; hs [light] &lt;baby&gt; ɕ [loc] t&gt;p [wing] d [give] &lt;baby&gt; t&gt;p [wing] t&gt; [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] &lt;hab&gt; . w [light] fɕ [still] cf gl [water] jt [loc] hc [walk] &lt;stat&gt; q&gt;ʔ ch [walk] &lt;dur&gt; [sky] k [loc] ɕ ks [walk] &lt;stat&gt; sq [divine] hs [light] &lt;be&gt; &lt;hab&gt; . &lt;divine&gt; s gw [sound] qq&gt; [plant] &lt;iii&gt; iw [join] qq&gt; [plant] fɕ [still] &lt;stat&gt; xd [water] wʔ [plant] qq&gt; [plant] sk [loc] f [grow] k&gt; kʔ [want] &lt;dur&gt; . &lt;baby&gt; [sky] k [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] k&gt; [walk]  &lt;dur&gt; cf [water] k&gt; [loc] k&gt; [dark] is [big] wc [plant] &lt;be&gt; tq&gt; [sense] &lt;stat&gt; . sq [divine] k [loc] w [light] &lt;be&gt; wc [plant] &lt;be&gt; &lt;stat&gt; xd [water] wʔ [plant] &lt;baby&gt; &lt;i&gt; sd [know] &lt;dur&gt; . &lt;baby&gt; qq&gt; [plant] &lt;iii&gt; iw [join] &lt;iii&gt; [make] qq&gt; [plant] kw [rest] &lt;iii&gt; [make] [fruit] qq&gt; [plant] ɕ [loc] f [grow] &lt;eat&gt; &lt;for&gt; &lt;be&gt; &lt;stat&gt; t&gt;t&gt; [time] &lt;be&gt; &lt;stat&gt; &lt;coll&gt; qq&gt; [plant] [fruit] j [asis] &lt;hab&gt; .
+</span>
+:::
+:::
+
+---
+
+::: columns
+::: {.column width="48%"}
+The drowned dove flower is native to Xipʼuupát and used to honor some deities, especially Súósichí, the freshwater deity.
+
+At freshwater temples, doves were drowned into a basin of freshwater from the rivers as a sacrifice to Súósichí. On large holidays, villages celebrate around the fire pit and socialize.
+
+One member, Shupúú, sat close to the fire to stay warm and kept to themself. Another member decided to sit next to Shupúú and invited them into the woods to wander.
+
+As they were walking, Shupúú was shoved into a large tree. They shouted as someone bit at their neck. A flash of light appeared, casting a shadow onto the tree.
+
+They continued to gnaw into Shupúúʼs neck, while the fire behind them grew more violent. Once their neck was split, Shupúú screamed one last time and rain fell from the sky.
+
+Some villagers went to inspect the scream and found a pile of wet ashes and bones. They were drunk so they ignored it. Once they returned, they found the ashes and bones gone but instead found white flowers bloomed with a dark center. 
+
+These flowers became known as drowned dove flowers because of this. When an offering needs made to the freshwater deity, villagers use these flowers instead of doves.
+:::
+
+::: {.column width="4%"}
+<!-- mind the gap -->
+:::
+
+::: {.column width="48%"}
+Cacti grew near a river, feeding on starlight. Water plants watched as the cacti were harvested.
+
+One day, some children killed an animal by the river and cooked it over a fire. Afterward they saw a light over the sea, and they went after it.
+
+It led them to a tree, and they sat beneath it. There, the light taught them a magic spell.
+
+The children dipped their heads beneath the sea and spoke the spell. The light in the sea made the children glow and gave them wings so they could fly. The light grew calm, then rose from the sea into the sky, to be burning stars.
+
+The spell soothed the cacti, but the water plants longed to grow like cacti. The children flew through the sky and saw a great dark tree beside the river. Because of the starlight, the water plants listened to the children there at the tree. Then the children put the cacti to sleep and made them grow fruit to be eaten.
+
+And ever since, cacti bear fruit.
+:::
+:::
+
+# 💮 Bonus
+
+Lastly, because who doesn't love data, the tabs below provide a table and some plots showing how the length of the text and its English translation changed over the course of the relay measured in both number of both words and characters (using romanisations only, except that Sdefa is different).
+
+::: {.panel-tabset}
+
+## Full table
+
+```{r lhar_tbl}
+lhar <- lhar %>%
+    mutate(wordchar_ratio_lg = nchar_lg / nword_lg) %>%
+    select(stage, participant, language, completion_date, time_spent, wordchar_ratio_lg, nchar_lg, nword_lg, nchar_en, nword_en) %>%
+    mutate(wordchar_ratio_lg = round(wordchar_ratio_lg, 2))
+
+lhar %>%
+    select(-completion_date, -time_spent) %>%
+    rename(
+        Stage = stage,
+        Participant = participant,
+        Language = language,
+        `N characters per word (conlang)` = wordchar_ratio_lg,
+        `N characters (conlang)` = nchar_lg,
+        `N words (conlang)`  = nword_lg,
+        `N characters (English)` = nchar_en,
+        `N words (English)` = nword_en
+        ) %>%
+    knitr::kable()
+```
+
+## N characters per word in conlang text
+
+```{r wordchar_ratio_lg}
+lhar %>%
+    ggplot(aes(x = stage, y = wordchar_ratio_lg)) +
+    geom_line(colour = "red", alpha = 0.3) +
+    geom_point(aes(colour = language)) +
+    geom_text(aes(label = language, colour = language, family = fontCustom), nudge_y = -0.5) +
+    scale_x_continuous(breaks = seq(0, 10, 1)) +
+    expand_limits(y = 0) +
+    theme(legend.position = "none") +
+    labs(x = "Relay stage", y = "N characters per word in conlang text")
+```
+
+## N characters in conlang text
+
+```{r nchar_lg}
+lhar %>%
+    ggplot(aes(x = stage, y = nchar_lg))+
+    geom_line(colour = "red", alpha = 0.3) +
+    geom_point(aes(colour = language)) +
+    geom_text(aes(label = language, colour = language, family = fontCustom), nudge_y = -25) +
+    scale_x_continuous(breaks = seq(0, 10, 1)) +
+    expand_limits(y = 0) +
+    theme(legend.position = "none") +
+    labs(x = "Relay stage", y = "N characters in conlang text")
+```
+
+## N words in conlang text
+
+```{r nword_lg}
+lhar %>%
+    ggplot(aes(x = stage, y = nword_lg))+
+    geom_line(colour = "red", alpha = 0.3) +
+    geom_point(aes(colour = language)) +
+    geom_text(aes(label = language, colour = language, family = fontCustom), nudge_y = -10) +
+    scale_x_continuous(breaks = seq(0, 10, 1)) +
+    scale_y_continuous(breaks = pretty_breaks()) +
+    expand_limits(y = 0) +
+    theme(legend.position = "none") +
+    labs(x = "Relay stage", y = "N words in conlang text")
+```
+
+## N characters in English translation
+
+```{r nchar_en}
+lhar %>%
+    ggplot(aes(x = stage, y = nchar_en))+
+    geom_line(colour = "red", alpha = 0.3) +
+    geom_point(aes(colour = language)) +
+    geom_text(aes(label = language, colour = language, family = fontCustom), nudge_y = -25) +
+    scale_x_continuous(breaks = seq(0, 10, 1)) +
+    expand_limits(y = 0) +
+    theme(legend.position = "none") +
+    labs(x = "Relay stage", y = "N characters in English translation")
+```
+
+## N words in English translation
+
+```{r nword_en}
+lhar %>%
+    ggplot(aes(x = stage, y = nword_en))+
+    geom_line(colour = "red", alpha = 0.3) +
+    geom_point(aes(colour = language)) +
+    geom_text(aes(label = language, colour = language, family = fontCustom), nudge_y = -10) +
+    scale_x_continuous(breaks = seq(0, 10, 1)) +
+    expand_limits(y = 0) +
+    theme(legend.position = "none") +
+    labs(x = "Relay stage", y = "N words in English translation")
+```
+
+:::

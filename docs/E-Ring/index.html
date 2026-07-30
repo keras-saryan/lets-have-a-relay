@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.33">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>🌵 E Ring – Let’s Have A Relay</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/img/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6eab0263727efe9be21239f7e0f4c1f3.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8c9bef3a2e3dea24995ca8c5bca2d7a7.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-6eab0263727efe9be21239f7e0f4c1f3.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-27007b7a08cfe9ffd8e2c77a164d301a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-079c41fcf87698ce532824fd8707f81e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-27007b7a08cfe9ffd8e2c77a164d301a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/embedpdf-1.0.2/embedpdf.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../assets/custom.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-xl " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/img/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Let’s Have A Relay</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../E-Ring/index.html" aria-current="page"> 
+<span class="menu-text">🌵 E Ring</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../I-Ring/index.html"> 
+<span class="menu-text">⛈️ I Ring</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#participants" id="toc-participants" class="nav-link active" data-scroll-target="#participants">🏃 Participants</a></li>
+  <li><a href="#the-torches" id="toc-the-torches" class="nav-link" data-scroll-target="#the-torches">🔥 The torches</a></li>
+  <li><a href="#the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos" id="toc-the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos" class="nav-link" data-scroll-target="#the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos">🌈 The arc of the conlang relay is long and it bends towards chaos</a>
+  <ul class="collapse">
+  <li><a href="#miles-chielúú-1" id="toc-miles-chielúú-1" class="nav-link" data-scroll-target="#miles-chielúú-1">🥰 Miles – Chielúú</a></li>
+  <li><a href="#eiran-bädoudilätous-1" id="toc-eiran-bädoudilätous-1" class="nav-link" data-scroll-target="#eiran-bädoudilätous-1">🐉 Eiran – Bädoudilätous</a></li>
+  <li><a href="#solar-dauλi-1" id="toc-solar-dauλi-1" class="nav-link" data-scroll-target="#solar-dauλi-1">🌞 Solar – Dauλi</a></li>
+  <li><a href="#tincture-múnise-1" id="toc-tincture-múnise-1" class="nav-link" data-scroll-target="#tincture-múnise-1">🎨 Tincture – Múnise</a></li>
+  <li><a href="#carl-upan-sakkaa-1" id="toc-carl-upan-sakkaa-1" class="nav-link" data-scroll-target="#carl-upan-sakkaa-1">🦁 Carl – Upan Sakkaa</a></li>
+  <li><a href="#biblaridion-taqva-miir-1" id="toc-biblaridion-taqva-miir-1" class="nav-link" data-scroll-target="#biblaridion-taqva-miir-1">🦎 Biblaridion – Taqva-miir</a></li>
+  <li><a href="#magpie-mekundo-1" id="toc-magpie-mekundo-1" class="nav-link" data-scroll-target="#magpie-mekundo-1">🐦‍⬛ Magpie – Mekundo</a></li>
+  <li><a href="#jonathan-sdefa-1" id="toc-jonathan-sdefa-1" class="nav-link" data-scroll-target="#jonathan-sdefa-1">🎻 Jonathan – Sdefa</a></li>
+  <li><a href="#tethys-kam-pirngu-1" id="toc-tethys-kam-pirngu-1" class="nav-link" data-scroll-target="#tethys-kam-pirngu-1">📯 Tethys – Kam Pirngu</a></li>
+  <li><a href="#jason-shikaiwa-1" id="toc-jason-shikaiwa-1" class="nav-link" data-scroll-target="#jason-shikaiwa-1">🦔 Jason – Shikaiwa</a></li>
+  </ul></li>
+  <li><a href="#then-vs-now" id="toc-then-vs-now" class="nav-link" data-scroll-target="#then-vs-now">🫣 Then vs now</a></li>
+  <li><a href="#bonus" id="toc-bonus" class="nav-link" data-scroll-target="#bonus">💮 Bonus</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">🌵 E Ring</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="participants" class="level2">
+<h2 class="anchored" data-anchor-id="participants">🏃 Participants</h2>
+<p>The table below shows the ten participants that took part in this ring, the languages used as well as the dates at which the torch was completed/handed over alongside links to PDFs of the torches—which can also be viewed <a href="#the-torches">below</a>—and other documents. Participants were (initially) given a (very flexible) five days to complete the tasks of deciphering the text they received, translating it into their language and composing their own torch document to pass on to the next participant.</p>
+<table class="table-striped caption-top table">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+<col style="width: 1%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Participant</th>
+<th>Language<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></th>
+<th style="text-align: right;">Torch completion date</th>
+<th style="text-align: center;">Torch etc.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Miles Wronkovich</td>
+<td>Chielúú</td>
+<td style="text-align: right;">1 Jan.&nbsp;2026</td>
+<td style="text-align: center;"><a href="chielúú-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Eiran o Ddwywent</td>
+<td>Bädoudilätous</td>
+<td style="text-align: right;">11 Jan.&nbsp;2026</td>
+<td style="text-align: center;"><a href="bädoudilätous-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Solar</td>
+<td>Dauλi</td>
+<td style="text-align: right;">16 Jan.&nbsp;2026</td>
+<td style="text-align: center;"><a href="dauλi-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Tincture</td>
+<td>Múnise</td>
+<td style="text-align: right;">22 Jan.&nbsp;2026</td>
+<td style="text-align: center;"><a href="múnise-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a> <a href="múnise-translations.pdf" target="_blank" title="Download English translations"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Carl Avlund</td>
+<td>Upan Sakkaa</td>
+<td style="text-align: right;">1 Feb.&nbsp;2026</td>
+<td style="text-align: center;"><a href="upan-sakkaa-translations.pdf" target="_blank" title="Download English translations"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Biblaridion</td>
+<td>Taqva-miir</td>
+<td style="text-align: right;">7 Feb.&nbsp;2026</td>
+<td style="text-align: center;"><a href="taqva-miir-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a> <a href="taqva-miir-translation.pdf" target="_blank" title="Download English translation"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Magpie</td>
+<td>Mekundo</td>
+<td style="text-align: right;">10 Feb.&nbsp;2026</td>
+<td style="text-align: center;"><a href="mekundo-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a> <a href="mekundo-translations.pdf" target="_blank" title="Download English translations"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Jonathan Kane</td>
+<td>Sdefa</td>
+<td style="text-align: right;">18 Feb.&nbsp;2026</td>
+<td style="text-align: center;"><a href="sdefa-torch.pdf" target="_blank" title="Download torch (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a> <a href="sdefa-translations.pdf" target="_blank" title="Download English translations"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Tethys</td>
+<td>Kam Pirngu</td>
+<td style="text-align: right;">28 Feb.&nbsp;2026</td>
+<td style="text-align: center;"><a href="kam-pirngu-torch.pdf" target="_blank" title="Download torch (with English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Jason Lynn</td>
+<td>Shikaiwa</td>
+<td style="text-align: right;">7 Mar.&nbsp;2026</td>
+<td style="text-align: center;"><a href="shikaiwa-text.pdf" target="_blank" title="Download text (without English translation)"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a> <a href="shikaiwa-translations.pdf" target="_blank" title="Download English translations"><i class="fa-solid fa-file-pdf" aria-label="file-pdf"></i></a></td>
+</tr>
+</tbody>
+</table>
+<p>The timeline below further illustrates the amount of time taken to pass the torch by each participant except the relay master, Miles.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/timeline-1.light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-torches" class="level1">
+<h1>🔥 The torches</h1>
+<p>As well as being available for download <a href="#participants-and-schedule">above</a>, each torch (or best equivalent) can be viewed in the tabs below. Some include an English translation, others not, but this can be seen for all languages in the video and slides <a href="#the-unveiling">above</a> as well as on this page <a href="#the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos">below</a>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Miles – Chielúú</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Eiran – Bädoudilätous</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solar – Dauλi</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Tincture – Múnise</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">Carl – Upan Sakkaa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">Biblaridion – Taqva-miir</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-7" role="tab" aria-controls="tabset-1-7" aria-selected="false">Magpie – Mekundo</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-8" role="tab" aria-controls="tabset-1-8" aria-selected="false">Jonathan – Sdefa</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-9" role="tab" aria-controls="tabset-1-9" aria-selected="false">Tethys – Kam Pirngu</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-10-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-10" role="tab" aria-controls="tabset-1-10" aria-selected="false">Jason – Shikaiwa</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="embedpdf" data-src="chielúú-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="chielúú-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="embedpdf" data-src="bädoudilätous-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="bädoudilätous-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="embedpdf" data-src="dauλi-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="dauλi-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="embedpdf" data-src="múnise-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="múnise-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="embedpdf" data-src="upan-sakka-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="upan-sakka-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="embedpdf" data-src="taqva-miir-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="taqva-miir-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-7-tab">
+<div class="embedpdf" data-src="mekundo-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="mekundo-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-8-tab">
+<div class="embedpdf" data-src="sdefa-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="sdefa-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-9-tab">
+<div class="embedpdf" data-src="kam-pirngu-torch.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="kam-pirngu-torch.pdf" download="">Download PDF file.</a></div>
+</div>
+<div id="tabset-1-10" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-10-tab">
+<div class="embedpdf" data-src="shikaiwa-text.pdf" data-renderer="auto" data-width="100%" data-height="500"><a href="shikaiwa-text.pdf" download="">Download PDF file.</a></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos" class="level1">
+<h1>🌈 The arc of the conlang relay is long and it bends towards chaos</h1>
+<p>This is the bit you’re probably after: the text and its English translation at each stage of the relay.</p>
+<section id="miles-chielúú-1" class="level2">
+<h2 class="anchored" data-anchor-id="miles-chielúú-1">🥰 Miles – Chielúú</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Shupúú chʼúúhu ketíí pííne Xipʼuupát pʼunáá Sichúú yeng xoanchimáát áánu pʼámáát ráákíésu mééhi. Ráákíésu kim mát pʼunáá Méhuníí xaa Súósichí, sichí háyu ráákíésu.</p>
+<p>Shupúú kúút ketíí úúpí chʼúúhu hóóxa chʼuomáát ietlóó saa Súósichí pʼunáá óángáá yeng sichí ííha shishu kúút ííchú sichí háyu pʼieshímu. Máácha xúóshí kúút xáá nípú ííchú xúófó chʼoachúúm nii áánu cháyu siefaamáát.</p>
+<p>Súútu Shupúú saang ííchú ínsha moaxúú shiim xaa háyu shichʼá. Cháyu kiyaa micháá moaxúú sáápú úúpí kiilú saang ííchú Shupúú kʼixáá áánu sáá chá pʼunáá uoʼoláá.</p>
+<p>Kú sáá yeng kiyaa su Shupúú ketíí chʼáhí ííchú laashí. Chá micháá nitʼa yeng kiyaa úúpí sháchí Shupúú háyu sipʼi. Xiechʼietʼee kʼaang siim róó ííchú laashí.</p>
+<p>Kiyaa xáá xáá sháchí pʼunáá Shupúú háyu sipʼi yeng ínsha pʼunáá kú moaxúú la háyu lúóxáá kúút. Kʼoataa Shupúú háyu sipʼi úúpí ketíí ixuu shikíí chʼáhí úúpí nitʼa yeng hutʼíémáát úúpí fi ííchú ínsha.</p>
+<p>Máácha xúóshí háyu síéyáá mééhi micháá ííha leawúú nitʼamáát úúpí pííne yúúmfe kúmimáát ítlu kúsa yáli ítlu kúút. Hutʼíí kú áánu sichí wikáá úúpi xaatoo fít. Kʼoataa kú chʼáhí yaa ííchu laashí shikíí úúpí pííne kúmimáát kúsa yáli kúút háyu cha pʼunáá xoanchimáát xiechʼíí kúsa fu sayú kʼu kúút tʼáát xóónchi.</p>
+<p>Hutʼíí níchʼiifo mát wikáá xoanchimáát mát ketíí shelá ííha hóóxa shupúú chʼúúhu. Máácha xúóshí háyu síéyáá kúút chʼuu ietlóó xoanchimáát mát ixuu kú shii shupúú kúút, háyu pʼoo chátʼee iráát ketíí chʼuu ietlóó saa Súósichí.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>The drowned dove flower is native to Xipʼuupát and used to honor some deities, especially Súósichí, the freshwater deity.</p>
+<p>At freshwater temples, doves were drowned into a basin of freshwater from the rivers as a sacrifice to Súósichí. On large holidays, villages celebrate around the fire pit and socialize.</p>
+<p>One member, Shupúú, sat close to the fire to stay warm and kept to themself. Another member decided to sit next to Shupúú and invited them into the woods to wander.</p>
+<p>As they were walking, Shupúú was shoved into a large tree. They shouted as someone bit at their neck. A flash of light appeared, casting a shadow onto the tree.</p>
+<p>They continued to gnaw into Shupúúʼs neck, while the fire behind them grew more violent. Once their neck was split, Shupúú screamed one last time and rain fell from the sky.</p>
+<p>Some villagers went to inspect the scream and found a pile of wet ashes and bones. They were drunk so they ignored it. Once they returned, they found the ashes and bones gone but instead found white flowers bloomed with a dark center.</p>
+<p>These flowers became known as drowned dove flowers because of this. When an offering needs made to the freshwater deity, villagers use these flowers instead of doves.</p>
+</div>
+</div>
+</section>
+<section id="eiran-bädoudilätous-1" class="level2">
+<h2 class="anchored" data-anchor-id="eiran-bädoudilätous-1">🐉 Eiran – Bädoudilätous</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Arr wen diindinwadorr Rrüdwidoubü sobo Müilisïdorr, oihpu bädoudalibisorr jänswinwa; ssärranrrobis Sudüinalü. Osa tan bädoudalibis met, san met Bädoudalibisorrtwe, Sinsorrnrrotis met bädoudalibis sinsorrn.</p>
+<p>Las Sinsorrnrrotis, met san senarrwe sinsorrn, arr risorr bïd müilistbonan met Sinsorrnrrotis; tuna sudüinalüdorr ou ssärranrrobis loun narrluu. Kuu ssiirarrtssäspanï dadüda tm bïd diindnarrluu-tisnd oihpu botbonan.</p>
+<p>Tuna ssïsü loun sin ahpin Sudüinalü, sounyau diindedalü to tanalü. Obrrwe ssïsürrurr sé loun isirr to sounyau sï soudrrb ebi tuna tm, soub rrwe Sudüinalü, met se rrwe, il ahpin rrwe met san sütaswe.</p>
+<p>Il rrurr ebi rrot ssïsü loun isirr Sudüinalü met tuna sütast. Rrau Sudüinalü h-üda h-ebi h-asirr ssïsü loun isirr ys met Sudüinalü. Bädoudüit düinalüduu to rrot rrwe san sütast rre.</p>
+<p>Asirr ssïsü loun isirr diind met ys met Sudüinalü ob ebi soundyau rrurr keedalü. Büitü rrwe h-ob, tuna ys met Sudüinalü sobo süs to kwodüit büitubuu rrwe, rrau Sudüinalü h-ebi arrs sorrant ou se diind.</p>
+<p>Obrrwe ssäspanïdisorr to h-ilädil rrurr rrauduudorr se tïrtwe sorranalü to büisorr sorranalü. Arrs sorrant oihpu sinsorrn, sütateet rrurr t-nwadbasis rrurr. Büisü rrwe, il rrurr bïd süs rre, wen kwodüit büitubuu, arr ou tout to büisorrrrwe, tanalü diindinwadorr düinalü ahpin sena tm süstorrnwadorr so; ou sütateet basis.</p>
+<p>Arrs sorrant, sütateet met kweduu diindinwadorr nwadbasis to h-arr loun sudüinalü ssärranrrobis. Narrl ssäspandisorr to las rrurr se rurr met kweduu met diindinwa las sudüinalüdorr ebi ssiditsis sé narrl basis to se Sinsorrnrroti las sé.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p><em>[N.B. This is a translation of the Chielúú rather than Bädoudilätous text.]</em></p>
+<p>Dove was drowned to find Our Rock Under the Clouds’ flowers over some plant deities. This one deity in the Pantheon of Gods is Freshwater-Maker, the Freshwater Deity.</p>
+<p>Doves lie down to drown like death to give to Freshwater-Maker inside their freshwater cauldron to see streams at Freshwater-Maker’s Temple. Farmhouses (habitually eat) at the friend-pyre upon their holiday.</p>
+<p>A younger sibling (of Dove) sits with Dove, becoming hot and lonely. Their (Dove’s) older sibling wakes up and would become cold sitting there, they invite Dove over to walk with them in the forest.</p>
+<p>They (both) walk while the older sibling makes Dove lie down again by a large tree. They (Dove) begin to scream as the older sibling bites Dove’s neck. Something beneficial shines and is made in the shadow of the large tree.</p>
+<p>The older sibling continues to bite into Dove’s neck’s fire while they (both) become animalistic. (It is) Thundering, Dove’s neck lies down against (the tree) and lightning strikes it, (Dove) screams while raindrops (fall) towards the fire.</p>
+<p>Some farmers wake up and follow the screams through to a wet pile of ashes with wet bones. Raining over freshwater, they grow to forget them (animalistic). Thundering, they arrive at the large tree lightning struck to find the ashes and their bones, nothing but white flowers with a bowl of black roots that ceased to expand.</p>
+<p>Raining, this poem grows flowers to know and to see like a dove to drown. Farmers die and send the flower poem between them to give doves when something has begged to die and be given to Freshwater-Maker.</p>
+</div>
+</div>
+</section>
+<section id="solar-dauλi-1" class="level2">
+<h2 class="anchored" data-anchor-id="solar-dauλi-1">🌞 Solar – Dauλi</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>saudude gςýýgte kkúíge ηςúmau ke luaíge rvúíde fuiha σéékte ggúsesgu σa σáíppo bíúσiaηosemγoko. σéékte — σa luaíha σauato σa σéékte bíúηγusagγu ςvúásegγu — suλato siσusamγoko ke augamasamγoko.</p>
+<p>dςu σáíppo mugaλaizamγuko, siσusamγuko suλato luaisu suaki fuiha gváúdema fuiha miatoodda. miatoodda-ruidisamigu ηςúúla fuηvúíresaηgu tumakausemigu luaíηe ηςáma ssisaηgu.</p>
+<p>maididau fubςaisammuko dγusamγuko ηγáúsemmuko ke luaíηe ssisammoko buiηe ηkáízammoko ruiddsemmoko.</p>
+<p>miσuaσo fuiηa bςáísammuko miσuaσo fuςvusammuko daiadasimmuko ke luaíηa ηγáúízammuko buiηe kiumuizammuko ruiddsemmoko, ςvúsammuko ddágosamγoko fuςvúáísamγoko dmúássemmoko luasu ηςúútλoka fuςvúáísasgu ςvúáísamγoko kiumusammuko ggusemγoko.</p>
+<p>luaíha daσuizamγoko daiaadsammoko ddágosamγoko mugeeλsemmoko kkúso ηςúútλoka. frúiηe σáíppo-daipíáúizammoko harudauλsemγoko! dγusemγuko ke busu ηςúútλoka fuςvúáísasgu rvúízammoko ruiddsemγoko.</p>
+<p>bumi σáíppo-daipíáúizammoko gςáηau fugςalookkaiza ruiddsemmoko! gγálookke harudauλsegςuumko, σúáηηe fuíha σáíppo kkúso ηςúútλoka mugaaλsegςuumko ke ruddágosagςuumko — gςi harudauλesagςuumko fsu σáíppo — siσusegςuumko ke ttiiλkesamγuko fuηviraizamγuko ke sugaudema dbíílsegςuumko.</p>
+<p>ηςííkte fuςvúáísammuko ludaidasemmuko, σárodauλe ληútosimmuko ke suadadui ke dváítaiku fugvaugaudeemsasmuko ggusemmuko. luaisu gváúgaudema-ggusammuko ke luaisu σárodauλe-ksasasmuko gváúgaudeemsasmoko lgusgesmoko lua σsismuko! ηςálookkesagςuumko luaisu srútukoλa daσusegςuumko. gváúgaudeemsasmoko suudude fsu σáíppo ke suaki luaisu srútukoλa bγusasmuko ggusesmuko ke σsissmuko.</p>
+<p>gváúgaudema fudbilesassine σádauλe fuσaizamγoko fuiha saudude ggusessine, ddagosamγuko luσiaηosemγuko lgusesmuko ke ggusesmuko. ηςííkte fuςvúáísammuko ttiiλkesemmuko ke saudude tumakausemmuko σáíha σadauλe fuíha ςvúsammuko — su dςúso tumakousasgu saudude daipiausamγuko dςu ggusesmuko su bu bsu ttiiλkesasmuko dikatosesmuko</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>The flowers see the moon under the cloud, and over their gods; those stars that were drowned. There is one god in the pantheon that made the skies and is the god of the skies.</p>
+<p>The sky-maker sent, in their container, the sky and looked for streams around their holy meeting place, and laid down stars that had drowned. Those in the homeland offer burnt sacrifices on that day.</p>
+<p>The younger sibling sat with the doves and became hot where he was alone. His sibling woke the older sibling and became cold when they sat, she welcomed the stars into the forest, and they came to her and met her there.</p>
+<p>When they arrived the older sibling made them lay down under the trees and they began to scream as the older sibling bit the necks of the stars. They shone and made the canopies great!</p>
+<p>The older sibling is biting the fire of the stars’ necks and becomes animalistic! She is thundering and lays the stars’ necks under the canopies, and makes lightning —the screaming of the stars— while those stars fall as raindrops and fire!</p>
+<p>Farmers woke up and followed the screams to a pile of wet bone and wet ashes. Looking for raindrops in the skies, the bones and ashes grew and did not know it. She thundered and arrived around the grand tree. The plants desired her thunder. The ashes and bones saw the stars’ flowers with the vessel on the dark tree’s limbs, and they grew!</p>
+<p>The raindrops saw the story of the flowers grow, they knew and saw the brightness drown. The farmers died and sent them to her story that is the flower showed the stars how to beg that something would die and be sent to the World maker.</p>
+</div>
+</div>
+</section>
+<section id="tincture-múnise-1" class="level2">
+<h2 class="anchored" data-anchor-id="tincture-múnise-1">🎨 Tincture – Múnise</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Sikeetse kútuna nevepú ves túsrënseva vaava uket aantu kutur.</p>
+<p>Miheké ílepsam vata neksam sulúsursë véruksa eukeu úékkuhuksa. Neksam sulúsurmeke léthuksa, vaku ekúrmesam sauk melu véruksa. Ekúérmesam neveputa vaava úketes náúltetesam pírrëmuk neukeu lusmuk.</p>
+<p>Pírrëmise lussa eet ulmeme kilmúútnasam aepas.</p>
+<p>Ulmés atta themas eukeu ulmé melu sámaksa eukeu aepas pírrëmiseru rúkkaksa. Súúttavu kupripéth súúravva laraunsa seukeu kutus pétheuta enrës.</p>
+<p>Pétheruvu suura uváár súúttamasmë suura ves luursa seuksa el áttapsa. Suuth péthensë serháépnaksa eukeu athmúniteva péthensë uvmúnuksa. Petta euk súúravvath méhensa eukeu muutsa eukeu veskë uváás.</p>
+<p>Luu serháépnese suutta évrëmahnas eslúlukuksa! Sata athmunit súúthava munus eukeu ses suhís suura ves luurmus euppu athmuutna sulúsursë úmmuvath athmúnitevath verus pétheuta lussa éúkeru ísemes eukeu met theus.</p>
+<p>Miheké vata ummu athmunit munsa eukeu themas eukeu métansam etru emal kutus. Metta étheksa eukkel kútuksa eukeu métansë itse athmunit étheksa euksa lúluksa!</p>
+<p>Suutta évrëmahnavath athura uváás. Lusurmúútnasam sutúsrënse sikeetse liis athura melu sauk seuk kutus seukeu lúluksa. Théúnata sikeetses lúlukmise munit kutus eukeu túsrënse muutna étheksa eukeu se kutus. Miheké vata áttapsa eukeu sikeetse tássuva áthava múniteva mus. Sikéétseta serháépneseva muk seukeu ákise seva kútumus. Ákisevath sikeetse ísemeh.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>Flowers watch an eye under a cow and over a harvest of drowned barley.</p>
+<p>The plentiful barley in the field was created and ruled over by the stars in the sky. For as the stars in the sky were laid down, so was the barley created beside a lake in the homeland. In the homeland, on one day of the barley harvest, a cow must be offered for sacrifice and immolated.</p>
+<p>As the sacrifice burned, a young boy worked in the firelight. His brother woke up, sat beside him and worked until the sacrifice cooled. Then the brothers welcomed spark-bugs to the trees and watched as the bugs came.</p>
+<p>When the insects arrived, the siblings lay down under the trees but did not sleep. The insects attacked the siblings by biting and said great words to them. The insects fed themselves on the trees and glowed and grew large.</p>
+<p>The two siblings, attacked by biting, grew wings. The wind said great words to them and laid their heads down under the trees and, with powerful great words of the stars, created a great light, and the insects were immolated until they died and fell in the water.</p>
+<p>The plentiful barley heard the powerful great words and awoke, and saw bones and ashes in the water. The water knew that it was being looked at, and knew the powerful great words of the water, but it grew!</p>
+<p>The siblings arrived by wing at a great tree. In the starlight they saw the drowned flowers and the lake next to the dark great tree. The rain saw the flowers’ growing words and knew and saw the drowned light. The plentiful barley slept, and offered flowers to the elder brother’s words. The flowers needed to be given to one attacked by biting, and made him see a method. By this method the flowers wished to die.</p>
+</div>
+</div>
+</section>
+<section id="carl-upan-sakkaa-1" class="level2">
+<h2 class="anchored" data-anchor-id="carl-upan-sakkaa-1">🦁 Carl – Upan Sakkaa</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>mintea boku kosposunniatu maatuena eldiena dumbudoevapoutun</p>
+<p>ambeni tittimeena via kaankeva yuboana dumbuena bestithenni vi segenunni</p>
+<p>weiki tittimeena ambenithemba men tovaniitovammea naau eppea bundu dumbuenanau bestithenni</p>
+<p>tovaniitovammea naau dumbudoeva miam mintea eikounni vi urenni</p>
+<p>urenniatua eikountumba run ukkina eikoa vesumun</p>
+<p>ukkina oadenia yoron vi ukkina bundui kono vi urenniatua keishukeiva iin is leunnas</p>
+<p>yan yukaasuma iin oadendi tippashiena situun vi wannapou vi tippashiena irrinas</p>
+<p>tippashiena yukaasumanastumba run vesumena boku oadendi kono vi lokuasabua</p>
+<p>tippashiena viai oadendi ovinni vi wanna irri ulomeenaguu</p>
+<p>tippashiena irri vesum kekisun vi irri avaaikei vi ameskei</p>
+<p>ovinniatu oadendi badini</p>
+<p>weshu oadendi ulomeenaguu vi inaniri vesumena bokuthen</p>
+<p>yan eeppa ulomeena ratu osa ames tittimeava bestithen vi osa aspaniaiva iin tippashiena avaainas vi yan wanna pova nuakunas</p>
+<p>kaankeva dumbuena eeppa ulomeenaguu vi yoron vi eppea nuaku timmuena thoogamue</p>
+<p>povapouninin vuuru vi osa itaava ulomeatun vuuru vi ankebua</p>
+<p>badiiena ratu oadendi vesummenastimi</p>
+<p>tittimeava boku kosposunniatu maatuena irripou vi eppea bundu dangan vesummeanaupou vi anke</p>
+<p>shovo maatuena ankevapou vi ava vuuru vi osapou</p>
+<p>kaankeva dumbuena lokua vi oademmea uloiena maatuenasun</p>
+<p>maatuena ovinniatuasunni vi oona isa nasiissun</p>
+<p>en maatu lokkonannieatu menki</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>the eyes flowers that are drowned beneath a beast are watching bulrushes being picked</p>
+<p>the bulrushes in the plentiful field were created and ruled by the stars of the sky</p>
+<p>indeed, like the stars were put onto the sky, the bulrushes, too, were created next to the lake in the homeland</p>
+<p>in the homeland, on the day of picking the bulrushes, a beast was roasted and sacrificed</p>
+<p>while roasting the sacrificed one, a young one stoked the fire</p>
+<p>the young one’s brother stood up, sat down next to the young one, and kept working until the sacrificed one had cooled down</p>
+<p>then the two brothers welcomed some fireflies to the forest and saw them, and the fireflies came to them</p>
+<p>while the fireflies were coming to the forest, the two brothers laid themselves down under the trees, but they did not sleep</p>
+<p>the two brothers were bitten by the fireflies, and they spoke great words to the two of them</p>
+<p>the fireflies fed them wood, and the two of them began to glow and they became large</p>
+<p>the two bitten brothers got wings</p>
+<p>the wind spoke great words to the two brothers, and it laid their heads under the trees</p>
+<p>then, with great, powerful words, it created the great starlights, and until it quieted down, the fireflies kept glowing, and then they went into the water</p>
+<p>the plentiful bulrushes spoke great, powerful words and arose, and they looked like the bones in the lake</p>
+<p>the water knew that it had been seen, and it knew the great word of desire, and it grew</p>
+<p>using their wings, the two brothers arrived at a great tree</p>
+<p>under the starlights, the drowned flowers saw them, and they saw also saw the great, dark tree next to the lake, and they grew</p>
+<p>the rain saw the flowers’ growth, and it knew the light, and it saw it</p>
+<p>the plentiful bulrushes slept, and gave older brother’s great words to the flowers</p>
+<p>the flowers were given to the bitten one, and they gave him the path</p>
+<p>that’s the way in which flowers must die</p>
+</div>
+</div>
+</section>
+<section id="biblaridion-taqva-miir-1" class="level2">
+<h2 class="anchored" data-anchor-id="biblaridion-taqva-miir-1">🦎 Biblaridion – Taqva-miir</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Sinahti sikti ir nëhkëllo amba rööynö-dhaw töhrö lëwarbissa-örrüühsü röhsü. Rööynöhi talma ir lëwarbissa imaak iskaarhis nimiraadhas matasqaas. Ihrid, lëwarbissa qorod ir yaalliihüüh sök nëhvihtaad vööt örmi miyan ohoros. Ködhün, lëwarbissa-örrüüh-yaalas tüün, nëhkëllo kürdivöösqööröhhin kövihyükkön, niilla vir sihvas yaarahvan. Niillas inwa vir tohsë miyan aarakahhin kürdivöösqöömö torvotonno ürnin diimün. Sükkin, inwanda horon ilnaan sühinöömistiis rühhin aaras tis’sëmaaywarahhin tassin’damrë. Sühinöömisti horon yaattan, inwanda aaras osto töhrö aarak, dërë yalhirat. Sühinöömisti taay tar’tirahhanahhin ayrimak-miirmiqas taraal’din. Araay sühinöömistüür ostoomiqos kahaykamrëhhin qaadhatanahhin noolkotonohhin siyüstüür komohoron. Yaltaamëndë inwanda araay ayrimak-miirmiqas dirahhin osto töhrö torrë kondoos ihqaan. Sükkin sühinöömisti taay baraadhis ayrimak sar iskaarhis rööynö-noolkos matasqaar aaylaahkënna noolkoton diimrëhhin sinrë yaattan. Iskaarhi lëwarbissa atqaarahhin baraadhis ayrimak-miirmiqas din, örmi vööt tihnü ir yërvëttin. Ya din sin ya körühhin ilrë, dërë iqva ayrimak-miirmiqas ilkëëh ir ohoron. Inwanda aaras aarman siyüsti sar qaadhas ostoos qööröt. Rööynö-noolko töhrö, sinahti sikti ya torrë lëh’örmis miyan qaadhas süürdüs ostoos röhsü. Darha ör noolkos lës’sikti ih ohoroohsë rühhin. Iskaarhi lëwarbissa alhitanahhin inwanda oorho ayrimak ya siktis matasqaas. Sikti ya nilküühyaqas hooqqon kahaytirahsë. Va ya miyaq sikti yaandë vöösqöön ayaar.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>Long ago, the aquatic flowers saw the harvesting of the bulrushes under the constellation of the sacred beast. The starry sky brought about abundant plains of bulrushes. Indeed, with nightfall, bulrushes also came to grow in the great homeland next to a lake. There, on the day of the bulrush harvest, while the sacred beast was sacrificed and cooked, a child added fuel to the fire. The child’s sibling sat down next to them and kept working until the sacrifice started getting cold. Then, when the two siblings saw some fireflies near the forest, they greeted them and ran toward them. As the fireflies went into the forest, the two siblings sat down under the trees but didn’t fall asleep. The fireflies bit them and said magic words to them. As they were fed wood by the fireflies, they became larger, began to glow, and grew wings. Now flying, the siblings said magic words and then put their heads under the trees. Then, using powerful magic, the fireflies kept lighting up to create starlight until it became quiet, and then they went into the water. As the plentiful bulrushes stood up and said powerful magic words, the bones inside the lake were turned to ashes. They knew that the water was seen, but their desire to have a magic word grew. Using their wings, the two siblings arrived at a big tree. Under the starlight, the aquatic flowers saw the siblings and the big black tree next to the lake. The rain saw the light and the flowers growing. The plentiful bulrushes went to sleep as the siblings’ magic brought about flowers. The flowers were made to be bitten, creating a path. This is how flowers should be killed.</p>
+</div>
+</div>
+</section>
+<section id="magpie-mekundo-1" class="level2">
+<h2 class="anchored" data-anchor-id="magpie-mekundo-1">🐦‍⬛ Magpie – Mekundo</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Ge baagha-báághata zengè, súlosèt fina dèlèngómoti maazemang ranáářèfrum khogum ěkeze dehedzighus. Idzuk řodum hídzita dèlèngířideti tsa’úsudzèt ge maazemang.</p>
+<p>Hundrut, ha maraa dèlèngúnggiti, maazemang dèlèndzá’usrum ge ’udz èřung maazè dèghogum. Ge ambè’údz, ge maazemang ranáářèfrum dèzengè, ěkeze dèradzetak an dzinè fèngadè retsino dèngadè dèreretsínindi. Fútuuti, fèsasè fègérezeti ěřumfè, mi dèmús dèngadè dèreretsínimak.</p>
+<p>Ge suludz, sásota alomok súúhiri alomi’i alumekúndimakènè. Ge alobúnduti súúhiri dèzuudaa, sásota alogérezak khogum sembina, an alèhungge alèmúhumus meno. Súúhiri dèghisè dèsèkénimako èřung élo’o maklè. Súúhiri dèdzéénimak dzíneta alobundu alo’óklirum ka’a, an alotsa’us alohindim alořohak meese. Sásota nébiřum alugèrenzim alósrobèt khogum suu alomíkutak élo’o maklè. Lana, mi dzaatum hidze, súúhiri dèdzáá tu’uz dèhíndindi, an dèhékíkènè buru suludz.</p>
+<p>Ha alomíkutak rondzè élo’o maklè, mi tava maazemang dèdzaatum hundrut an gáraba dèrítsirum buru maazè. Finata dèsèkèk suu dómorunè, an dèveliik tsá’usrum nim élo’o maklè. Nim alomeese, sásota alomi’i alobúnduk ondaz legre ka’a èřung maazè. Khogum hidze dèhiri, sulos fina domok u’n ka’a. Ándara dómok hiri’n fina tsá’usrum. Maazemang dèhungge dèmuhun sásota alélo’o dířitak túkutèt.</p>
+<p>Nim nanotuno, tukut dèdzaati bundo ríndrakhrum. Ambè dèlěndro otuno tukut dèlamuu dèradzéřum.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>In the ancient days, the water plants watched the horsetail harvest under the star-sign of the aetosauroid. The starry sky brought about fields of horsetails. Indeed, when night fell, horsetails grew in the land by the river’s end.</p>
+<p>There, on the day of the horsetail harvest, an aetosauroid was sacrificed and a child kept the fire while it cooked. As she worked, the child’s sibling sat next to her, until the sacrifice finished cooking.</p>
+<p>In the sea, the siblings saw sea-lights, and went and spoke to them. When they entered the sea-lights’ shallows, the siblings sat under a sembina-tree, but did not fall asleep. The sea-lights bit them and taught magic words to them. The sea-lights made the children able to eat wood, and they got bigger, glowed, and grew wings. The flying siblings put their heads under the water and spoke the magic words. Then, in order to become stars, the sea-lights went silent and glowed as they went out to sea.</p>
+<p>When they said the powerful magic words, many horsetails stood upright, while bones burned in the river. The plants knew that they were being watched by the water, but they wanted to grow with the magic words. The siblings used their wings to reach a large black tree by the river. Under the stars’ light, the water-plants watched them and the tree. The rain watched the lights and the growing plants. The horsetails fell asleep and the siblings’ magic made strobili.</p>
+<p>In this way, the strobili became able to be cut. That is the manner in which the strobili should be killed.</p>
+</div>
+</div>
+</section>
+<section id="jonathan-sdefa-1" class="level2">
+<h2 class="anchored" data-anchor-id="jonathan-sdefa-1">🎻 Jonathan – Sdefa</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><span title="Jonathan's translation into Sdefa of Magpie's Mekundo text."> <img src="sdefa.light.png" class="img-fluid"> </span></p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>Long, long ago, some bushes grew by the mouth of a river. The starry sky made the bushes grow, and the seaweed saw the bushes being harvested.</p>
+<p>One day, two children slaughtered a cow nearby, then tended a fire and cooked it. The children saw a light in the ocean, so they walked over to it to speak to it. They arrived at the light, and then they sat below a tree. The light spoke to them, and taught them a magic word. The light changed them, making them glow, get larger, and grow wings.</p>
+<p>The siblings put their heads into the water, and said the magic word. Then the light became silent and flew away over the ocean, and became a star.</p>
+<p>Because of the magic word, the bushes grew. The seaweed saw this, and it wanted to grow, so the children flew away and arrived at a big black tree next to the river. By the starlight, the seaweed watched the children and the tree.</p>
+<p>Then the children used their magic to make the bushes fall asleep and grow many berries. That is why bushes now grow edible berries.</p>
+</div>
+</div>
+</section>
+<section id="tethys-kam-pirngu-1" class="level2">
+<h2 class="anchored" data-anchor-id="tethys-kam-pirngu-1">📯 Tethys – Kam Pirngu</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Tarawa mut tinik ta, makka ti-wirum ka ti-riuni, tak tum ndauni-mang. Pambam mut tum ti-waak tammak tikki ti-mut tinik ta.</p>
+<p>Ngam pikkar-mang, pirrak na pawanga ngguwi-mang tak ti-rum ndauni, kukkuppi kir tak pinam-mang. Pambam ti-wir na kirumbau-manngak ngam ti-ngu, akkattu, turuwa kir. Kirraak mbamanga piu-mang, kirra kinggindang ngam ri kir. Ti-wa, ti-wirummak ngangaur ti-wir na kat rundi-mang. Ti-wirrak na ikkjuma tj-ambi-wirra ngam ti-ngu, kanngam ti-wat rundi. Ti-wirummak ngam ti-ngu kunggun kirum ti-wir na, kunggun tawa kirra kappun nua pak. Tarawa kiwup ti-wirum, kir pak ka ti-ngu ri ti-rannga, nua nggarwi tiuni-mang pinam.</p>
+<p>Ti-wattak rundi kunggun kiwup ti-mut tinik ta. Turungu ti-mut tum nua tawa ina tak ti-mut tinik. Ti-wir na pappak uppan ti-rannga, pambam pippau-manngak mbum tamut tak ti-rum ndauni. Nua ti-wirum ka ti-riuni, randamba ti-mut tum ti-wirrak na tak ti-wippak. Tuwa ti-wa, ti-wirrak na ndurnur ti-mut tinik, takkunggun tawa kirra rakki nua makka. Nua ti-wa, rakki mut tinik.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>Thorn bushes grew, eating the light of the stars, alongside a river. Water plants saw someone harvesting the thorn bushes.</p>
+<p>One day, two children killed a beast by the river, and cooked it with a fire. The children saw a light in the ocean, and went and followed it. They arrived at a tree, and sat under it. Here, the light taught the two children a magic spell. The children submerged their heads in the ocean and said the magic spell. The light made them glow, and made them grow wings for flying. Growing silent, it flew out of the ocean to the sky, to float as a burning star.</p>
+<p>The magic spell made the thorn bushes quiet. The water plants wanted to grow like the thorn bushes. The two children flew through the sky, and saw a big black tree. Because of the light from the stars, the water plants obeyed the two children and the tree. Then the children used the spell to make the briar bushes fall asleep and grow fruit to eat. This is why briar bushes grow fruit.</p>
+</div>
+</div>
+</section>
+<section id="jason-shikaiwa-1" class="level2">
+<h2 class="anchored" data-anchor-id="jason-shikaiwa-1">🦔 Jason – Shikaiwa</h2>
+<div class="columns">
+<div class="column shikaiwa" style="width:48%;">
+<p><span title="Kai hakou cifik’uu p’auvai saikoko wiehaau fudha wucu. Kai uthi wau itk’icu kai hakou haau wahawazhu. Au thaulu p’auvai, zhatha yaulho cifik’uu p’au s’aufi suthuavai saufi kakushi p’au lhafauhopai. Udhauto p’au, wie cifeava p’au yaulho itk’ifai ptayuudho ik’oshu. Wie yaulho wiishet’au ptayazhu p’au yaulho wiishet’ie k’auvai. Taidu p’auvai wie kai yiihi sauwa yalhoshi ptethayawai yaulho auzho paavai. Yaulho zhasit’oko fuo cifet’ie t’aava zhkusizhu p’au s’auwa pteyadawai. Wie cifeko p’au yaulho pzhuuka yaulho husa yaulhoshi t’ipiodhau yaulho t’ipiot’au p’auvai pthukilo. Wie faisha cifeyuti uuzhivai k’aucushu aavaka shkusiwai saiko husa paulho. Shiihi sauwa kakou waciu kakou faishafai huthi wau kakousko vu k’icis’o.Yaulho aavaka p’auvai pthuki ik’oshu cifik’uu aka shiili wiishe p’au itk’ifai. Saikoko wie p’au wiishe p’auvai huthi wau yaulho palhuucu. Yaulho kakou waciu wacuuka kakou kawo wacuuka ciiya kakoushi vu haau si p’auvai. T’aata p’auvai k’akou ciiyaayalha"> &lt;pl&gt; qq&gt; [plant] c f [water] k&gt; [loc] &lt;be&gt; &lt;stat&gt; sq [divine] k [loc] w [light] &lt;eat&gt; pt [live] f [grow] . &lt;pl&gt; xd [water] wʔ [plant] tq&gt; [sense] &lt;dur&gt; &lt;pl&gt; qq&gt; [plant] &lt;eat&gt; &lt;iii&gt; hw [harvest] &lt;dur&gt; . &lt;sg&gt; &lt;sun&gt; &lt;be&gt; &lt;stat&gt; &lt;pauc&gt; &lt;baby&gt; c f [water] k&gt; [loc] &lt;be&gt; &lt;tel&gt; sp [animal] &lt;ii&gt; t [die] &lt;stat&gt; sp [animal] k [asis] ɕ [loc] &lt;be&gt; &lt;ii&gt; fk [process] . tt&gt; [time] &lt;be&gt; w [light] cf gl [water] ʔ [loc] &lt;be&gt; &lt;baby&gt; tq&gt; [sense] &lt;stat&gt; &lt;xv&gt; t [follow] k&gt; [walk] &lt;dur&gt; . w [light] &lt;baby&gt; wc [plant] t&gt; [loc] &lt;i&gt; t&gt;j [walk] &lt;be&gt; &lt;baby&gt; wc [plant] t&gt;d [loc] k&gt; [rest] &lt;stat&gt; . tl d [divine] &lt;be&gt; &lt;stat&gt; w [light] &lt;pl&gt; &lt;divine&gt; s gw [sound] &lt;baby&gt; ɕ [loc] &lt;xv&gt; t&gt;j [walk] &lt;stat&gt; &lt;baby&gt; ɕʔ [copy] p [know] &lt;stat&gt; . &lt;baby&gt; &lt;3pauc&gt; k [loc] f [head] cf gl [water] t&gt;d [loc] t&gt;f [walk] ɕ ks [walk] &lt;be&gt; &lt;tel&gt; s gw [sound] &lt;xv&gt; j dh [sound] . w [light] cf gl [water] k [loc] &lt;be&gt; &lt;baby&gt; &lt;i&gt; [make] &lt;baby&gt; hs [light] &lt;baby&gt; ɕ [loc] t&gt;p [wing] d [give] &lt;baby&gt; t&gt;p [wing] t&gt; [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] &lt;hab&gt; . w [light] fɕ [still] cf gl [water] jt [loc] hc [walk] &lt;stat&gt; q&gt;ʔ ch [walk] &lt;dur&gt; [sky] k [loc] ɕ ks [walk] &lt;stat&gt; sq [divine] hs [light] &lt;be&gt; &lt;hab&gt; . &lt;divine&gt; s gw [sound] qq&gt; [plant] &lt;iii&gt; iw [join] qq&gt; [plant] fɕ [still] &lt;stat&gt; xd [water] wʔ [plant] qq&gt; [plant] sk [loc] f [grow] k&gt; kʔ [want] &lt;dur&gt; . &lt;baby&gt; [sky] k [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] k&gt; [walk] &lt;dur&gt; cf [water] k&gt; [loc] k&gt; [dark] is [big] wc [plant] &lt;be&gt; tq&gt; [sense] &lt;stat&gt; . sq [divine] k [loc] w [light] &lt;be&gt; wc [plant] &lt;be&gt; &lt;stat&gt; xd [water] wʔ [plant] &lt;baby&gt; &lt;i&gt; sd [know] &lt;dur&gt; . &lt;baby&gt; qq&gt; [plant] &lt;iii&gt; iw [join] &lt;iii&gt; [make] qq&gt; [plant] kw [rest] &lt;iii&gt; [make] [fruit] qq&gt; [plant] ɕ [loc] f [grow] &lt;eat&gt; &lt;for&gt; &lt;be&gt; &lt;stat&gt; t&gt;t&gt; [time] &lt;be&gt; &lt;stat&gt; &lt;coll&gt; qq&gt; [plant] [fruit] j [asis] &lt;hab&gt; . </span></p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>Cacti grew near a river, feeding on starlight. Water plants watched as the cacti were harvested.</p>
+<p>One day, some children killed an animal by the river and cooked it over a fire. Afterward they saw a light over the sea, and they went after it.</p>
+<p>It led them to a tree, and they sat beneath it. There, the light taught them a magic spell.</p>
+<p>The children dipped their heads beneath the sea and spoke the spell. The light in the sea made the children glow and gave them wings so they could fly. The light grew calm, then rose from the sea into the sky, to be burning stars.</p>
+<p>The spell soothed the cacti, but the water plants longed to grow like cacti. The children flew through the sky and saw a great dark tree beside the river. Because of the starlight, the water plants listened to the children there at the tree. Then the children put the cacti to sleep and made them grow fruit to be eaten.</p>
+<p>And ever since, cacti bear fruit.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="then-vs-now" class="level1">
+<h1>🫣 Then vs now</h1>
+<p>Now, to give a clearer picture of how things <del>degraded</del> progressed from start to finish, below is a direct comparison of the starting (left) and final (right) texts in Chielúú/Shikaiwa and English.</p>
+<hr>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Shupúú chʼúúhu ketíí pííne Xipʼuupát pʼunáá Sichúú yeng xoanchimáát áánu pʼámáát ráákíésu mééhi. Ráákíésu kim mát pʼunáá Méhuníí xaa Súósichí, sichí háyu ráákíésu.</p>
+<p>Shupúú kúút ketíí úúpí chʼúúhu hóóxa chʼuomáát ietlóó saa Súósichí pʼunáá óángáá yeng sichí ííha shishu kúút ííchú sichí háyu pʼieshímu. Máácha xúóshí kúút xáá nípú ííchú xúófó chʼoachúúm nii áánu cháyu siefaamáát.</p>
+<p>Súútu Shupúú saang ííchú ínsha moaxúú shiim xaa háyu shichʼá. Cháyu kiyaa micháá moaxúú sáápú úúpí kiilú saang ííchú Shupúú kʼixáá áánu sáá chá pʼunáá uoʼoláá.</p>
+<p>Kú sáá yeng kiyaa su Shupúú ketíí chʼáhí ííchú laashí. Chá micháá nitʼa yeng kiyaa úúpí sháchí Shupúú háyu sipʼi. Xiechʼietʼee kʼaang siim róó ííchú laashí.</p>
+<p>Kiyaa xáá xáá sháchí pʼunáá Shupúú háyu sipʼi yeng ínsha pʼunáá kú moaxúú la háyu lúóxáá kúút. Kʼoataa Shupúú háyu sipʼi úúpí ketíí ixuu shikíí chʼáhí úúpí nitʼa yeng hutʼíémáát úúpí fi ííchú ínsha.</p>
+<p>Máácha xúóshí háyu síéyáá mééhi micháá ííha leawúú nitʼamáát úúpí pííne yúúmfe kúmimáát ítlu kúsa yáli ítlu kúút. Hutʼíí kú áánu sichí wikáá úúpi xaatoo fít. Kʼoataa kú chʼáhí yaa ííchu laashí shikíí úúpí pííne kúmimáát kúsa yáli kúút háyu cha pʼunáá xoanchimáát xiechʼíí kúsa fu sayú kʼu kúút tʼáát xóónchi.</p>
+<p>Hutʼíí níchʼiifo mát wikáá xoanchimáát mát ketíí shelá ííha hóóxa shupúú chʼúúhu. Máácha xúóshí háyu síéyáá kúút chʼuu ietlóó xoanchimáát mát ixuu kú shii shupúú kúút, háyu pʼoo chátʼee iráát ketíí chʼuu ietlóó saa Súósichí.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column shikaiwa" style="width:48%;">
+<p><span title="Kai hakou cifik’uu p’auvai saikoko wiehaau fudha wucu. Kai uthi wau itk’icu kai hakou haau wahawazhu. Au thaulu p’auvai, zhatha yaulho cifik’uu p’au s’aufi suthuavai saufi kakushi p’au lhafauhopai. Udhauto p’au, wie cifeava p’au yaulho itk’ifai ptayuudho ik’oshu. Wie yaulho wiishet’au ptayazhu p’au yaulho wiishet’ie k’auvai. Taidu p’auvai wie kai yiihi sauwa yalhoshi ptethayawai yaulho auzho paavai. Yaulho zhasit’oko fuo cifet’ie t’aava zhkusizhu p’au s’auwa pteyadawai. Wie cifeko p’au yaulho pzhuuka yaulho husa yaulhoshi t’ipiodhau yaulho t’ipiot’au p’auvai pthukilo. Wie faisha cifeyuti uuzhivai k’aucushu aavaka shkusiwai saiko husa paulho. Shiihi sauwa kakou waciu kakou faishafai huthi wau kakousko vu k’icis’o.Yaulho aavaka p’auvai pthuki ik’oshu cifik’uu aka shiili wiishe p’au itk’ifai. Saikoko wie p’au wiishe p’auvai huthi wau yaulho palhuucu. Yaulho kakou waciu wacuuka kakou kawo wacuuka ciiya kakoushi vu haau si p’auvai. T’aata p’auvai k’akou ciiyaayalha"> &lt;pl&gt; qq&gt; [plant] c f [water] k&gt; [loc] &lt;be&gt; &lt;stat&gt; sq [divine] k [loc] w [light] &lt;eat&gt; pt [live] f [grow] . &lt;pl&gt; xd [water] wʔ [plant] tq&gt; [sense] &lt;dur&gt; &lt;pl&gt; qq&gt; [plant] &lt;eat&gt; &lt;iii&gt; hw [harvest] &lt;dur&gt; . &lt;sg&gt; &lt;sun&gt; &lt;be&gt; &lt;stat&gt; &lt;pauc&gt; &lt;baby&gt; c f [water] k&gt; [loc] &lt;be&gt; &lt;tel&gt; sp [animal] &lt;ii&gt; t [die] &lt;stat&gt; sp [animal] k [asis] ɕ [loc] &lt;be&gt; &lt;ii&gt; fk [process] . tt&gt; [time] &lt;be&gt; w [light] cf gl [water] ʔ [loc] &lt;be&gt; &lt;baby&gt; tq&gt; [sense] &lt;stat&gt; &lt;xv&gt; t [follow] k&gt; [walk] &lt;dur&gt; . w [light] &lt;baby&gt; wc [plant] t&gt; [loc] &lt;i&gt; t&gt;j [walk] &lt;be&gt; &lt;baby&gt; wc [plant] t&gt;d [loc] k&gt; [rest] &lt;stat&gt; . tl d [divine] &lt;be&gt; &lt;stat&gt; w [light] &lt;pl&gt; &lt;divine&gt; s gw [sound] &lt;baby&gt; ɕ [loc] &lt;xv&gt; t&gt;j [walk] &lt;stat&gt; &lt;baby&gt; ɕʔ [copy] p [know] &lt;stat&gt; . &lt;baby&gt; &lt;3pauc&gt; k [loc] f [head] cf gl [water] t&gt;d [loc] t&gt;f [walk] ɕ ks [walk] &lt;be&gt; &lt;tel&gt; s gw [sound] &lt;xv&gt; j dh [sound] . w [light] cf gl [water] k [loc] &lt;be&gt; &lt;baby&gt; &lt;i&gt; [make] &lt;baby&gt; hs [light] &lt;baby&gt; ɕ [loc] t&gt;p [wing] d [give] &lt;baby&gt; t&gt;p [wing] t&gt; [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] &lt;hab&gt; . w [light] fɕ [still] cf gl [water] jt [loc] hc [walk] &lt;stat&gt; q&gt;ʔ ch [walk] &lt;dur&gt; [sky] k [loc] ɕ ks [walk] &lt;stat&gt; sq [divine] hs [light] &lt;be&gt; &lt;hab&gt; . &lt;divine&gt; s gw [sound] qq&gt; [plant] &lt;iii&gt; iw [join] qq&gt; [plant] fɕ [still] &lt;stat&gt; xd [water] wʔ [plant] qq&gt; [plant] sk [loc] f [grow] k&gt; kʔ [want] &lt;dur&gt; . &lt;baby&gt; [sky] k [loc] &lt;be&gt; &lt;stat&gt; p dk [wing] k&gt; [walk] &lt;dur&gt; cf [water] k&gt; [loc] k&gt; [dark] is [big] wc [plant] &lt;be&gt; tq&gt; [sense] &lt;stat&gt; . sq [divine] k [loc] w [light] &lt;be&gt; wc [plant] &lt;be&gt; &lt;stat&gt; xd [water] wʔ [plant] &lt;baby&gt; &lt;i&gt; sd [know] &lt;dur&gt; . &lt;baby&gt; qq&gt; [plant] &lt;iii&gt; iw [join] &lt;iii&gt; [make] qq&gt; [plant] kw [rest] &lt;iii&gt; [make] [fruit] qq&gt; [plant] ɕ [loc] f [grow] &lt;eat&gt; &lt;for&gt; &lt;be&gt; &lt;stat&gt; t&gt;t&gt; [time] &lt;be&gt; &lt;stat&gt; &lt;coll&gt; qq&gt; [plant] [fruit] j [asis] &lt;hab&gt; . </span></p>
+</div>
+</div>
+<hr>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>The drowned dove flower is native to Xipʼuupát and used to honor some deities, especially Súósichí, the freshwater deity.</p>
+<p>At freshwater temples, doves were drowned into a basin of freshwater from the rivers as a sacrifice to Súósichí. On large holidays, villages celebrate around the fire pit and socialize.</p>
+<p>One member, Shupúú, sat close to the fire to stay warm and kept to themself. Another member decided to sit next to Shupúú and invited them into the woods to wander.</p>
+<p>As they were walking, Shupúú was shoved into a large tree. They shouted as someone bit at their neck. A flash of light appeared, casting a shadow onto the tree.</p>
+<p>They continued to gnaw into Shupúúʼs neck, while the fire behind them grew more violent. Once their neck was split, Shupúú screamed one last time and rain fell from the sky.</p>
+<p>Some villagers went to inspect the scream and found a pile of wet ashes and bones. They were drunk so they ignored it. Once they returned, they found the ashes and bones gone but instead found white flowers bloomed with a dark center.</p>
+<p>These flowers became known as drowned dove flowers because of this. When an offering needs made to the freshwater deity, villagers use these flowers instead of doves.</p>
+</div><div class="column" style="width:4%;">
+<!-- mind the gap -->
+</div><div class="column" style="width:48%;">
+<p>Cacti grew near a river, feeding on starlight. Water plants watched as the cacti were harvested.</p>
+<p>One day, some children killed an animal by the river and cooked it over a fire. Afterward they saw a light over the sea, and they went after it.</p>
+<p>It led them to a tree, and they sat beneath it. There, the light taught them a magic spell.</p>
+<p>The children dipped their heads beneath the sea and spoke the spell. The light in the sea made the children glow and gave them wings so they could fly. The light grew calm, then rose from the sea into the sky, to be burning stars.</p>
+<p>The spell soothed the cacti, but the water plants longed to grow like cacti. The children flew through the sky and saw a great dark tree beside the river. Because of the starlight, the water plants listened to the children there at the tree. Then the children put the cacti to sleep and made them grow fruit to be eaten.</p>
+<p>And ever since, cacti bear fruit.</p>
+</div>
+</div>
+</section>
+<section id="bonus" class="level1">
+<h1>💮 Bonus</h1>
+<p>Lastly, because who doesn’t love data, the tabs below provide a table and some plots showing how the length of the text and its English translation changed over the course of the relay measured in both number of both words and characters (using romanisations only, except that Sdefa is different).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Full table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">N characters per word in conlang text</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">N characters in conlang text</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">N words in conlang text</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">N characters in English translation</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">N words in English translation</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 21%">
+<col style="width: 15%">
+<col style="width: 12%">
+<col style="width: 15%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Stage</th>
+<th style="text-align: left;">Participant</th>
+<th style="text-align: left;">Language</th>
+<th style="text-align: right;">N characters per word (conlang)</th>
+<th style="text-align: right;">N characters (conlang)</th>
+<th style="text-align: right;">N words (conlang)</th>
+<th style="text-align: right;">N characters (English)</th>
+<th style="text-align: right;">N words (English)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Miles</td>
+<td style="text-align: left;">Chielúú</td>
+<td style="text-align: right;">6.81</td>
+<td style="text-align: right;">1553</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">1204</td>
+<td style="text-align: right;">211</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Eiran</td>
+<td style="text-align: left;">Bädoudilätous</td>
+<td style="text-align: right;">6.83</td>
+<td style="text-align: right;">1558</td>
+<td style="text-align: right;">228</td>
+<td style="text-align: right;">1565</td>
+<td style="text-align: right;">266</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Solar</td>
+<td style="text-align: left;">Dauλi</td>
+<td style="text-align: right;">9.68</td>
+<td style="text-align: right;">1868</td>
+<td style="text-align: right;">193</td>
+<td style="text-align: right;">1593</td>
+<td style="text-align: right;">297</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Tincture</td>
+<td style="text-align: left;">Múnise</td>
+<td style="text-align: right;">7.49</td>
+<td style="text-align: right;">1356</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">1680</td>
+<td style="text-align: right;">313</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Carl</td>
+<td style="text-align: left;">Upan Sakkaa</td>
+<td style="text-align: right;">7.39</td>
+<td style="text-align: right;">1323</td>
+<td style="text-align: right;">179</td>
+<td style="text-align: right;">1868</td>
+<td style="text-align: right;">348</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Biblaridion</td>
+<td style="text-align: left;">Taqva-Miir</td>
+<td style="text-align: right;">8.46</td>
+<td style="text-align: right;">1481</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">1632</td>
+<td style="text-align: right;">289</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Magpie</td>
+<td style="text-align: left;">Mekundo</td>
+<td style="text-align: right;">7.73</td>
+<td style="text-align: right;">1353</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">1513</td>
+<td style="text-align: right;">265</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">Jonathan</td>
+<td style="text-align: left;">Sdefa</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">997</td>
+<td style="text-align: right;">191</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Tethys</td>
+<td style="text-align: left;">Kam Pirngu</td>
+<td style="text-align: right;">6.75</td>
+<td style="text-align: right;">1006</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">965</td>
+<td style="text-align: right;">183</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Jason</td>
+<td style="text-align: left;">Shikaiwa</td>
+<td style="text-align: right;">7.09</td>
+<td style="text-align: right;">971</td>
+<td style="text-align: right;">137</td>
+<td style="text-align: right;">914</td>
+<td style="text-align: right;">175</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/wordchar_ratio_lg-1.light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/nchar_lg-1.light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/nword_lg-1.light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/nchar_en-1.light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/nword_en-1.light.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>That is, the language translated <em>into</em> not <em>out of</em>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/keras-saryan\.github\.io\/lets-have-a-relay\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script type="application/javascript" src="../assets/light-dark.js"></script>
+
+
+
+
+<script src="../site_libs/quarto-contrib/embedpdf-1.0.2/embedpdf-viewer.js" type="module"></script>
+</body></html>

@@ -1,0 +1,23 @@
+---
+format: html
+knitr:
+  opts_chunk: 
+    echo: false
+    message: false
+    warning: false
+    dev: [lightsvgdev, darksvgdev]
+    fig.ext: [light.svg, dark.svg]
+    fig-align: center
+    fig-width: 7
+    fig-height: 4
+---
+
+## 🧐 About
+
+This website showcases the results of the 2026 Let's Have A Relay, a conlang relay involving <span class="rainbow-word"><span style="color:#E40303;">a</span><span style="color:#FF8C00;">l</span><span style="color:#FFED00;">l</span><span style="color:#008026;">i</span><span style="color:#004DFF;">e</span><span style="color:#750787;">s</span></span> of the Internet's foremost source of information on Dromornithidae, the YouTube channel [Let's Have A Bouba](https://www.youtube.com/@LetsHaveaBouba){target="_blank" title="Go to Let's Have A Bouba on YouTube"}. There were two rings: the [Western Chielúú E Ring](./E-Ring) and the [Eastern Chiilúú I Ring](./I-Ring).
+
+## 🎉 The big reveal
+
+The results of the relay for both rings were revealed in a livestream on [Let's Have A Bouba](https://www.youtube.com/@LetsHaveaBouba){target="_blank" title="Go to Let's Have A Bouba on YouTube"} with many of the participants.
+
+{{< video https://www.youtube.com/watch?v=zznr8AOA4kk >}}
