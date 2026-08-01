@@ -24,4 +24,4 @@ The results of the relay for both rings were revealed in a livestream on [Let's 
 
 ## 😋 More is more
 
-If your appetite for <span class="relayted">relay<span class="smush">-rela</span>ted</span> content has been whetted, have a gander at the page for the [2024 LTS Relay](https://keras-saryan.github.io/lts-relay/), which involved many of the same participants.
+If your appetite for <span class="relayted">relay<span class="smush">-rela</span>ted</span> content has been whetted, have a gander at the page for the [2024 LTS Relay](https://keras-saryan.github.io/lts-relay/){target="_blank"}, which involved many of the same participants.
