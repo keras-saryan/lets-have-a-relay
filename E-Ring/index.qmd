@@ -138,7 +138,6 @@ lhar %>%
     theme(axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank())
 ```
 
-
 # 🔥 The torches
 
 As well as being available for download [above](#participants-and-schedule), each torch (or best equivalent) can be viewed in the tabs below. Some include an English translation, others not, but this can be seen for all languages in the video and slides [above](#the-unveiling) as well as on this page [below](#the-arc-of-the-conlang-relay-is-long-and-it-bends-towards-chaos).

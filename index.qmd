@@ -21,3 +21,7 @@ This website showcases the results of the 2026 Let's Have A Relay, a conlang rel
 The results of the relay for both rings were revealed in a livestream on [Let's Have A Bouba](https://www.youtube.com/@LetsHaveaBouba){target="_blank" title="Go to Let's Have A Bouba on YouTube"} with many of the participants.
 
 {{< video https://www.youtube.com/watch?v=zznr8AOA4kk >}}
+
+## 😋 More is more
+
+If your appetite for <span class="relayted">relay<span class="smush">-rela</span>ted</span> content has been whetted, have a gander at the page for the [2024 LTS Relay](https://keras-saryan.github.io/lts-relay/), which involved many of the same participants.
