@@ -2,6 +2,7 @@ project:
  type: website
  resources:
     - 2026-lhar.pdf
+    - 2026-lhar-en.pdf
     - E-Ring/sdefa.dark.png
  output-dir: docs
 
