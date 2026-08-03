@@ -493,14 +493,17 @@ should be killed.
 ## 🎻 Jonathan -- Sdefa
 
 ::: columns
-::: {.column width="48%"}
-
+::: {.column width="100%"}
 A short audio sample of the text:
 
 <audio controls>
 <source src="sdefa-sample.mp3" type="audio/mp3" />
 </audio>
+:::
+:::
 
+::: columns
+::: {.column width="48%"}
 <span title="Jonathan's translation into Sdefa of Magpie's Mekundo text.">
 ![](sdefa.light.png)
 </span>
