@@ -62,7 +62,7 @@
 <polyline points='385.45,256.98 385.45,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='431.60,256.98 431.60,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
 <polyline points='477.75,256.98 477.75,5.48 ' style='stroke-width: 1.07; stroke: #EBEBEB; stroke-linecap: butt;' />
-<polyline points='62.38,55.47 108.53,54.85 154.68,16.91 200.84,79.58 246.99,83.62 293.14,64.28 339.29,79.95 385.45,234.90 431.60,122.42 477.75,126.70 ' style='stroke-width: 1.07; stroke: #FF0000; stroke-opacity: 0.30; stroke-linecap: butt;' />
+<polyline points='62.38,55.47 108.53,54.85 154.68,16.91 200.84,79.58 246.99,83.62 293.14,64.28 339.29,79.95 385.45,129.15 431.60,122.42 477.75,126.70 ' style='stroke-width: 1.07; stroke: #FF0000; stroke-opacity: 0.30; stroke-linecap: butt;' />
 <circle cx='62.38' cy='55.47' r='1.95' style='stroke-width: 0.71; stroke: #D89000; fill: #D89000;' />
 <circle cx='108.53' cy='54.85' r='1.95' style='stroke-width: 0.71; stroke: #F8766D; fill: #F8766D;' />
 <circle cx='154.68' cy='16.91' r='1.95' style='stroke-width: 0.71; stroke: #A3A500; fill: #A3A500;' />
@@ -70,7 +70,7 @@
 <circle cx='246.99' cy='83.62' r='1.95' style='stroke-width: 0.71; stroke: #FF62BC; fill: #FF62BC;' />
 <circle cx='293.14' cy='64.28' r='1.95' style='stroke-width: 0.71; stroke: #E76BF3; fill: #E76BF3;' />
 <circle cx='339.29' cy='79.95' r='1.95' style='stroke-width: 0.71; stroke: #00BF7D; fill: #00BF7D;' />
-<circle cx='385.45' cy='234.90' r='1.95' style='stroke-width: 0.71; stroke: #00B0F6; fill: #00B0F6;' />
+<circle cx='385.45' cy='129.15' r='1.95' style='stroke-width: 0.71; stroke: #00B0F6; fill: #00B0F6;' />
 <circle cx='431.60' cy='122.42' r='1.95' style='stroke-width: 0.71; stroke: #39B600; fill: #39B600;' />
 <circle cx='477.75' cy='126.70' r='1.95' style='stroke-width: 0.71; stroke: #9590FF; fill: #9590FF;' />
 <text x='62.38' y='62.32' text-anchor='middle' style='font-size: 11.00px;fill: #D89000; font-family: "Fira Sans";' textLength='37.64px' lengthAdjust='spacingAndGlyphs'>Chielúú</text>
@@ -80,7 +80,7 @@
 <text x='246.99' y='90.47' text-anchor='middle' style='font-size: 11.00px;fill: #FF62BC; font-family: "Fira Sans";' textLength='64.03px' lengthAdjust='spacingAndGlyphs'>Upan Sakkaa</text>
 <text x='293.14' y='71.13' text-anchor='middle' style='font-size: 11.00px;fill: #E76BF3; font-family: "Fira Sans";' textLength='52.28px' lengthAdjust='spacingAndGlyphs'>Taqva-Miir</text>
 <text x='339.29' y='86.80' text-anchor='middle' style='font-size: 11.00px;fill: #00BF7D; font-family: "Fira Sans";' textLength='45.97px' lengthAdjust='spacingAndGlyphs'>Mekundo</text>
-<text x='385.45' y='241.75' text-anchor='middle' style='font-size: 11.00px;fill: #00B0F6; font-family: "Fira Sans";' textLength='28.02px' lengthAdjust='spacingAndGlyphs'>Sdefa</text>
+<text x='385.45' y='136.00' text-anchor='middle' style='font-size: 11.00px;fill: #00B0F6; font-family: "Fira Sans";' textLength='28.02px' lengthAdjust='spacingAndGlyphs'>Sdefa</text>
 <text x='431.60' y='129.27' text-anchor='middle' style='font-size: 11.00px;fill: #39B600; font-family: "Fira Sans";' textLength='56.95px' lengthAdjust='spacingAndGlyphs'>Kam Pirngu</text>
 <text x='477.75' y='133.55' text-anchor='middle' style='font-size: 11.00px;fill: #9590FF; font-family: "Fira Sans";' textLength='43.86px' lengthAdjust='spacingAndGlyphs'>Shikaiwa</text>
 <rect x='41.61' y='5.48' width='456.91' height='251.50' style='stroke-width: 1.07; stroke: #333333;' />
